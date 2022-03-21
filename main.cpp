@@ -10,6 +10,9 @@ int sumTestFunction(int array[], int size);
 int maxTestFunction(int array[], int size);
 int minTestFunction(int array[], int size);
 
+
+  const int ARRAY_SIZE = 5;
+
 int main() {
   bool quit = false;
   while (!quit){
@@ -30,24 +33,23 @@ int main() {
 }
 
 void arrayTestFunction() {
-  const int arraySize = 5;
-  int numbers[arraySize];
+  int numbers[ARRAY_SIZE];
   cout << "Enter the numbers: ";
-  for(int i=0; i<arraySize; i++){
+  for(int i=0; i<ARRAY_SIZE; i++){
     cin >> numbers[i];
     //cout << "\n";
   }
   cout << "The numbers you entered are:";
-  for(int i=0; i<arraySize; i++){
+  for(int i=0; i<ARRAY_SIZE; i++){
     cout << "\n" << numbers[i];
   }
   cout << endl;
-  //double average = avgTestFunction(numbers, arraySize);
-  cout << "The sum of the numbers is " << sumTestFunction(numbers, arraySize) << endl;
-  cout << "The biggest number is " << maxTestFunction(numbers, arraySize) << endl;
-  cout << "The smallest number is " << minTestFunction(numbers, arraySize) << endl;
+  //double average = avgTestFunction(numbers, ARRAY_SIZE);
+  cout << "The sum of the numbers is " << sumTestFunction(numbers, ARRAY_SIZE) << endl;
+  cout << "The biggest number is " << maxTestFunction(numbers, ARRAY_SIZE) << endl;
+  cout << "The smallest number is " << minTestFunction(numbers, ARRAY_SIZE) << endl;
   cout.precision(2);
-  cout << fixed << "The average of the numbers is " << avgTestFunction(numbers, arraySize) << endl;
+  cout << fixed << "The average of the numbers is " << avgTestFunction(numbers, ARRAY_SIZE) << endl;
 }
 
 int sumTestFunction(int array[], int size){
