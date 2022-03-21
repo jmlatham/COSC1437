@@ -4,82 +4,170 @@
 #include <fstream>
 using namespace std;
 
-void arrayTestFunction();
-double avgTestFunction(int array[], int size);
-int sumTestFunction(int array[], int size);
-int maxTestFunction(int array[], int size);
-int minTestFunction(int array[], int size);
 
-
-  const int ARRAY_SIZE = 5;
 
 int main() {
-  bool quit = false;
-  while (!quit){
-
-    arrayTestFunction();
+  string again = "n";
+  int userInputs[5];
+  int sum;
+  int max;
+  int min;
+  double avg = 0.0;
+  
+  do{
+    cout << "\nEnter an integer:";
+    cin >> userInputs[0];
+    cout << "\nEnter an integer:";
+    cin >> userInputs[1];
+    cout << "\nEnter an integer:";
+    cin >> userInputs[2];
+    cout << "\nEnter an integer:";
+    cin >> userInputs[3];
+    cout << "\nEnter an integer:";
+    cin >> userInputs[4];
     
-    char again = 'n';
-    cout << "Again? Y/y or N/n : ";
-    cin >> again;
-    quit = (again == 'n' || again == 'N');
-    /*
-    cout << again;
-    cout << quit;
-    */
+    cout << userInputs[0] << " ";
+    cout << userInputs[1] << " ";
+    cout << userInputs[2] << " ";
+    cout << userInputs[3] << " ";
+    cout << userInputs[4] << " ";
+/*
+    cout << "\n\tThe sum of the numbers is ";
+    sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
+    cout << sum << endl;
+
+    
+    max = userInput1;
+    min = userInput1;
+    if (userInput2 > max) {
+      max = userInput2;
     }
+    if (userInput2 < min) {
+      min = userInput2;
+    }
+
+    if (userInput3 > max) {
+      max = userInput3;
+    }
+    if (userInput3 < min) {
+      min = userInput3;
+    }
+    
+    if (userInput4 > max) {
+      max = userInput4;
+    }
+    if (userInput4 < min) {
+      min = userInput4;
+    }
+    
+    if (userInput5 > max) {
+      max = userInput5;
+    }
+    if (userInput5 < min) {
+      min = userInput5;
+    }
+
+    cout << "The biggest number is " << max << "\n";
+    cout << "The \"smallest\" number is " << min << "\n";
+
+    avg = sum / 5.0;
+
+    cout << "The average of the five numbers is " << avg << endl;
+    */
+
+    //////////////////////////////////////////////
+    // upon successful completion of 1 - 5:
+    // 1. refactor to be separated into functions
+    // 2. refactor to use arrays
+    //////////////////////////////////////////////
+    
+    cin.clear();
+    cin.ignore(100000,'\n');
+    cout << "\nAgain? Y/y or N/n : ";
+    getline(cin, again);
+    
+  } while (again[0] == 'y' || again[0] == 'Y');
   cout << endl;
   return 0;
 }
 
-void arrayTestFunction() {
-  int numbers[ARRAY_SIZE];
-  cout << "Enter the numbers: ";
-  for(int i=0; i<ARRAY_SIZE; i++){
-    cin >> numbers[i];
-    //cout << "\n";
-  }
-  cout << "The numbers you entered are:";
-  for(int i=0; i<ARRAY_SIZE; i++){
-    cout << "\n" << numbers[i];
-  }
-  cout << endl;
-  //double average = avgTestFunction(numbers, ARRAY_SIZE);
-  cout << "The sum of the numbers is " << sumTestFunction(numbers, ARRAY_SIZE) << endl;
-  cout << "The biggest number is " << maxTestFunction(numbers, ARRAY_SIZE) << endl;
-  cout << "The smallest number is " << minTestFunction(numbers, ARRAY_SIZE) << endl;
-  cout.precision(2);
-  cout << fixed << "The average of the numbers is " << avgTestFunction(numbers, ARRAY_SIZE) << endl;
-}
 
-int sumTestFunction(int array[], int size){
-  int sum = 0;
-  for (int i=0; i<size; i++){
-    sum += array[i];
-  }
-  return sum;
-}
+/*
+string again = "n";
+  int userInput1;
+  int userInput2;
+  int userInput3;
+  int userInput4;
+  int userInput5;
+  int sum;
+  int max;
+  int min;
+  double avg = 0.0;
+  
+  do{
+    cout << "\nEnter an integer:";
+    cin >> userInput1;
+    cout << "\nEnter an integer:";
+    cin >> userInput2;
+    cout << "\nEnter an integer:";
+    cin >> userInput3;
+    cout << "\nEnter an integer:";
+    cin >> userInput4;
+    cout << "\nEnter an integer:";
+    cin >> userInput5;
+    
+    cout << userInput1 << " ";
+    cout << userInput2 << " ";
+    cout << userInput3 << " ";
+    cout << userInput4 << " ";
+    cout << userInput5 << " ";
 
-double avgTestFunction(int array[], int size){
-  int sum = 0;
-  for (int i=0; i<size; i++){
-    sum += array[i];
-  }
-  return sum / size;
-}
+    cout << "\n\tThe sum of the numbers is ";
+    sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
+    cout << sum << endl;
 
-int maxTestFunction(int array[], int size){
-  int max = -10000000;
-  for (int i=0; i<size; i++){
-    max = (array[i] > max) ? array[i] : max;
-  }
-  return max;
-}
+    
+    max = userInput1;
+    min = userInput1;
+    if (userInput2 > max) {
+      max = userInput2;
+    }
+    if (userInput2 < min) {
+      min = userInput2;
+    }
 
-int minTestFunction(int array[], int size){
-  int min = 10000000;
-  for (int i=0; i<size; i++){
-    min = (array[i] < min) ? array[i] : min;
-  }
-  return min;
-}
+    if (userInput3 > max) {
+      max = userInput3;
+    }
+    if (userInput3 < min) {
+      min = userInput3;
+    }
+    
+    if (userInput4 > max) {
+      max = userInput4;
+    }
+    if (userInput4 < min) {
+      min = userInput4;
+    }
+    
+    if (userInput5 > max) {
+      max = userInput5;
+    }
+    if (userInput5 < min) {
+      min = userInput5;
+    }
+
+    cout << "The biggest number is " << max << "\n";
+    cout << "The \"smallest\" number is " << min << "\n";
+
+    avg = sum / 5.0;
+
+    cout << "The average of the five numbers is " << avg << endl;
+    
+
+    //////////////////////////////////////////////
+    // upon successful completion of 1 - 5:
+    // 1. refactor to be separated into functions
+    // 2. refactor to use arrays
+    //////////////////////////////////////////////
+*/
