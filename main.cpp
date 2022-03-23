@@ -4,7 +4,8 @@
 #include <fstream>
 using namespace std;
 
-
+int getNumberOfSpaces(string stringToSearch);
+void readIntegerListFile(string filename);
 
 int main() {
   string again = "n";
@@ -13,6 +14,8 @@ int main() {
   int max;
   int min;
   double avg = 0.0;
+
+  readIntegerListFile("integerListFile.txt");
   
   do{
     cout << "\nEnter an integer:";
@@ -31,6 +34,7 @@ int main() {
     cout << userInputs[2] << " ";
     cout << userInputs[3] << " ";
     cout << userInputs[4] << " ";
+    
 /*
     cout << "\n\tThe sum of the numbers is ";
     sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
@@ -89,6 +93,40 @@ int main() {
   } while (again[0] == 'y' || again[0] == 'Y');
   cout << endl;
   return 0;
+}
+
+
+
+
+void readIntegerListFile(string filename){
+  ifstream myfile; 
+    myfile.open(filename);
+    string myline;
+    if ( myfile.is_open() ) {
+      while ( myfile ) {
+        getline (myfile, myline);
+        cout << "\nNumber of spaces: " << getNumberOfSpaces(myline) << '\n';
+        cout << myline << ": " << myfile.tellg() << '\n';
+      }
+    }
+    myfile.close();
+    return;
+}
+
+int getNumberOfSpaces(string stringToSearch){
+  int counter = 0;
+  bool previousCharIsSpace = true;
+  for(int i=0; (unsigned)i<stringToSearch.size(); i++){
+    if(stringToSearch[i] != ' ' && stringToSearch[i] != '\n'){
+      if(previousCharIsSpace && stringToSearch[i] != '\n'){
+        counter++;
+      }
+      previousCharIsSpace = false;
+    } else {
+      previousCharIsSpace = true;
+    }
+  }
+  return counter;
 }
 
 
@@ -164,7 +202,14 @@ string again = "n";
 
     cout << "The average of the five numbers is " << avg << endl;
     
-
+    //////////////////////////////////////////////
+    // Write a program that will:
+    // 1. receive five numbers from the user and
+    //    display all five numbers to the user
+    // 2. find the smallest and display it
+    // 3. find the largest and display it
+    // 4. find the sum and display it
+    // 5. find the average and display it
     //////////////////////////////////////////////
     // upon successful completion of 1 - 5:
     // 1. refactor to be separated into functions

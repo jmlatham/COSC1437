@@ -31,6 +31,7 @@ int main() {
     cout << userInputs[2] << " ";
     cout << userInputs[3] << " ";
     cout << userInputs[4] << " ";
+    
 /*
     cout << "\n\tThe sum of the numbers is ";
     sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
@@ -164,7 +165,14 @@ string again = "n";
 
     cout << "The average of the five numbers is " << avg << endl;
     
-
+    //////////////////////////////////////////////
+    // Write a program that will:
+    // 1. receive five numbers from the user and
+    //    display all five numbers to the user
+    // 2. find the smallest and display it
+    // 3. find the largest and display it
+    // 4. find the sum and display it
+    // 5. find the average and display it
     //////////////////////////////////////////////
     // upon successful completion of 1 - 5:
     // 1. refactor to be separated into functions
