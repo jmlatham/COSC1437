@@ -7,77 +7,54 @@ using namespace std;
 int getNumberOfSpaces(string stringToSearch);
 void readIntegerListFile(string filename);
 
+
+
+void getUserInput(int array[]);
+void printArrayValues(int array[]);
+void displayResults(string title, double result);
+int getSum(int array[]);
+int getMin(int array[]);
+int getMax(int array[]);
+double getAvg(int array[]);
+const int SIZE_OF_ARRAY = 5;
+
 int main() {
   string again = "n";
-  int userInputs[5];
+  int userInputs[SIZE_OF_ARRAY] = {10,20};
+  int multiArray[3][3];
   int sum;
   int max;
-  int min;
+  int min = 0;
   double avg = 0.0;
 
-  readIntegerListFile("integerListFile.txt");
+  //readIntegerListFile("integerListFile.txt");
   
   do{
-    cout << "\nEnter an integer:";
-    cin >> userInputs[0];
-    cout << "\nEnter an integer:";
-    cin >> userInputs[1];
-    cout << "\nEnter an integer:";
-    cin >> userInputs[2];
-    cout << "\nEnter an integer:";
-    cin >> userInputs[3];
-    cout << "\nEnter an integer:";
-    cin >> userInputs[4];
-    
-    cout << userInputs[0] << " ";
-    cout << userInputs[1] << " ";
-    cout << userInputs[2] << " ";
-    cout << userInputs[3] << " ";
-    cout << userInputs[4] << " ";
-    
-/*
-    cout << "\n\tThe sum of the numbers is ";
-    sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
-    cout << sum << endl;
 
-    
-    max = userInput1;
-    min = userInput1;
-    if (userInput2 > max) {
-      max = userInput2;
-    }
-    if (userInput2 < min) {
-      min = userInput2;
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cout<<"\n >> ";
+        cin >> multiArray[i][j];
+      }
     }
 
-    if (userInput3 > max) {
-      max = userInput3;
-    }
-    if (userInput3 < min) {
-      min = userInput3;
-    }
+    //for(int i=0; i<3; i++){
+    int i = 0;
+      for(int j=0; j<3; j++){
+        cout << "\nvalue: " << multiArray[j][i];
+      }
+    //}
     
-    if (userInput4 > max) {
-      max = userInput4;
-    }
-    if (userInput4 < min) {
-      min = userInput4;
-    }
-    
-    if (userInput5 > max) {
-      max = userInput5;
-    }
-    if (userInput5 < min) {
-      min = userInput5;
-    }
-
-    cout << "The biggest number is " << max << "\n";
-    cout << "The \"smallest\" number is " << min << "\n";
-
-    avg = sum / 5.0;
-
-    cout << "The average of the five numbers is " << avg << endl;
-    */
+    printArrayValues(userInputs);
+    getUserInput(userInputs);
+    printArrayValues(userInputs);
+    //cout << "\nSum: " << getSum(userInputs);
+    //cout << "\nMin: " << getMin(userInputs);
+    //cout << "\nMax: " << getMax(userInputs);
+    displayResults("\nSum: ", getSum(userInputs));
+    displayResults("\nMin: ", getMin(userInputs));
+    displayResults("\nMax: ", getMax(userInputs));
+    displayResults("\nAvg: ", getAvg(userInputs));
 
     //////////////////////////////////////////////
     // upon successful completion of 1 - 5:
@@ -94,6 +71,63 @@ int main() {
   cout << endl;
   return 0;
 }
+
+void getUserInput(int array[]){
+    for(int i = 0; i < SIZE_OF_ARRAY; i++){
+      cout << "\nEnter an integer: ";
+      cin >> array[i];
+    }
+}
+
+void printArrayValues(int array[]){
+  for(int i = 0; i < SIZE_OF_ARRAY; i++){
+      string title = "\n[" + to_string(i) + "]:";
+      displayResults(title, array[i]);
+      //cout << "\n["<< i <<"]:" array[i] << " ";
+    }
+}
+
+int getSum(int array[]){
+  int sum = 0;
+  for(int i = 0; i < SIZE_OF_ARRAY; i++){
+    sum = sum + array[i]; // come back to this to show an easier way!!!
+    sum += array[i];
+  }
+  return sum;
+}
+
+int getMin(int array[]){
+  int min = array[0];
+  for(int i = 0; i < SIZE_OF_ARRAY; i++){
+    if(min > array[i]){
+      min = array[i];
+    }
+  }
+  return min;
+}
+
+int getMax(int array[]){
+  int max = array[0];
+  for(int i = 0; i < SIZE_OF_ARRAY; i++){
+    if(max < array[i]){
+      max = array[i];
+    }
+  }
+  return max;
+}
+
+double getAvg(int array[]){
+  return getSum(array) / (double)SIZE_OF_ARRAY;
+}
+
+void displayResults(string title, double result){
+  cout << title << result;
+}
+
+
+
+
+
 
 
 
