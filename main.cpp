@@ -9,6 +9,8 @@ void readIntegerListFile(string filename);
 
 
 
+void singleArrayTest();
+void multiArrayTest(int multiArray[3][3]);
 void getUserInput(int array[]);
 void printArrayValues(int array[]);
 void displayResults(string title, double result);
@@ -18,49 +20,28 @@ int getMax(int array[]);
 double getAvg(int array[]);
 const int SIZE_OF_ARRAY = 5;
 
+
 int main() {
   string again = "n";
-  int userInputs[SIZE_OF_ARRAY] = {10,20};
   int multiArray[3][3];
-  int sum;
-  int max;
-  int min = 0;
-  double avg = 0.0;
 
   //readIntegerListFile("integerListFile.txt");
   
   do{
-
-    for(int i=0; i<3; i++){
-      for(int j=0; j<3; j++){
-        cout<<"\n >> ";
-        cin >> multiArray[i][j];
-      }
-    }
-
-    //for(int i=0; i<3; i++){
-    int i = 0;
-      for(int j=0; j<3; j++){
-        cout << "\nvalue: " << multiArray[j][i];
-      }
-    //}
+    //////////////////////////////////////////////
+    // Build a record
+    // Display the record
+    // Change and display the record
+    // Create an array of records
+    // Create a menu for working with the records
+    //////////////////////////////////////////////
     
-    printArrayValues(userInputs);
-    getUserInput(userInputs);
-    printArrayValues(userInputs);
-    //cout << "\nSum: " << getSum(userInputs);
-    //cout << "\nMin: " << getMin(userInputs);
-    //cout << "\nMax: " << getMax(userInputs);
-    displayResults("\nSum: ", getSum(userInputs));
-    displayResults("\nMin: ", getMin(userInputs));
-    displayResults("\nMax: ", getMax(userInputs));
-    displayResults("\nAvg: ", getAvg(userInputs));
-
-    //////////////////////////////////////////////
-    // upon successful completion of 1 - 5:
-    // 1. refactor to be separated into functions
-    // 2. refactor to use arrays
-    //////////////////////////////////////////////
+    
+    
+    
+    
+    //multiArrayTest(multiArray);
+    //singleArrayTest();
     
     cin.clear();
     cin.ignore(100000,'\n');
@@ -70,6 +51,43 @@ int main() {
   } while (again[0] == 'y' || again[0] == 'Y');
   cout << endl;
   return 0;
+}
+
+
+
+
+
+
+
+void singleArrayTest(){
+  int userInputs[SIZE_OF_ARRAY] = {10,20};
+  int sum;
+  int max;
+  int min = 0;
+  double avg = 0.0;
+
+  printArrayValues(userInputs);
+    getUserInput(userInputs);
+    printArrayValues(userInputs);
+    displayResults("\nSum: ", getSum(userInputs));
+    displayResults("\nMin: ", getMin(userInputs));
+    displayResults("\nMax: ", getMax(userInputs));
+    displayResults("\nAvg: ", getAvg(userInputs));
+}
+
+void multiArrayTest(int multiArray[3][3]){
+  for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cout<<"\n >> ";
+        cin >> multiArray[i][j];
+      }
+    }
+
+    for(int i=0; i<3; i++){
+      for(int j=0; j<3; j++){
+        cout << "\nvalue: " << multiArray[j][i];
+      }
+    }
 }
 
 void getUserInput(int array[]){
