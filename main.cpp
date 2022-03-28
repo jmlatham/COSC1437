@@ -14,6 +14,25 @@ struct testStruct {
   int age;
 };
 
+struct studentContact{
+  string email;
+  string address;
+  string phone;
+}; 
+
+struct studentName{
+  string first;
+  string last;
+  string middle;
+};
+
+struct studentRecord{
+  int id;
+  double gpa;
+  studentName name;
+  studentContact contactInfo;
+};
+
 void singleArrayTest();
 void multiArrayTest(int multiArray[3][3]);
 void getUserInput(int array[]);
@@ -31,7 +50,11 @@ int getMax(int array[]);
 double getAvg(int array[]);
 const int SIZE_OF_ARRAY = 5;
 
-
+void printRecord(studentRecord record);
+void printRecords(studentRecord records[]);
+void hardcodeStudents(studentRecord students[]);
+void changeRecordInfo(studentRecord& student);
+const int NUMBER_OF_STUDENTS = 3;
 int main() {
   string again = "n";
   int multiArray[3][3];
@@ -42,9 +65,14 @@ int main() {
     //structureTest();
     //structureArrayTest();
     //////////////////////////////////////////////
-    // Build a student record
-    // Display the student record
+    // Build  student records
+    studentRecord students[NUMBER_OF_STUDENTS];
+    hardcodeStudents(students);
+    // Display the student records
+    printRecords(students);
     // Change and display the student record
+    changeRecordInfo(students[0]);
+    printRecord(students[0]);
     // Create an array of student records
     // Create a menu for working with the records
     //////////////////////////////////////////////
@@ -66,23 +94,83 @@ int main() {
   return 0;
 }
 
+void printRecord(studentRecord record){
+  cout << "\n";
+  cout << "\t" << record.name.last << ", " << record.name.first << " " << record.name.middle;
+  cout << "\n\t\tID:  " << record.id;
+  cout << "\n\t\tGPA: " << fixed << setprecision(1) << record.gpa;
+  cout << "\n\t\tContact Information: ";
+  cout << "\n\t\t\tEmail: " << record.contactInfo.email;
+  cout << "\n\t\t\tPhone: " << record.contactInfo.phone;
+  cout << "\n\t\t\tAddress: " << record.contactInfo.address;
+  cout << endl;
+}
+void printRecords(studentRecord records[]){
+  cout << "\nStudent Records:";
+  for(int recordIndex=0; recordIndex<NUMBER_OF_STUDENTS; recordIndex++){
+    printRecord(records[recordIndex]);
+  }
+}
+
+void hardcodeStudents(studentRecord students[]){
+  students[0].id=1;
+  students[0].gpa=4.0;
+  students[0].name.first="Will";
+  students[0].name.middle="Anita";
+  students[0].name.last="Smith";
+  students[0].contactInfo.email="wSmith@Oscars.com";
+  students[0].contactInfo.address="123 Main, Kilgore, TX 75662";
+  students[0].contactInfo.phone = "555-555-5555";
+  
+  students[1].id=2;
+  students[1].gpa=3.5;
+  students[1].name.first="Chris";
+  students[1].name.middle="the";
+  students[1].name.last="Rock";
+  students[1].contactInfo.email="Chris@theRock.com";
+  students[1].contactInfo.address="321 Main, Kilgore, TX 75662";
+  students[1].contactInfo.phone = "555-555-5555";
+  
+  students[2].id=3;
+  students[2].gpa=3.0;
+  students[2].name.first="Jada";
+  students[2].name.middle="Pinkett";
+  students[2].name.last="Smith";
+  students[2].contactInfo.email="jSmith@Offended.com";
+  students[2].contactInfo.address="123 Main, Kilgore, TX 75662";
+  students[2].contactInfo.phone = "555-555-5555";
+}
+
+void changeRecordInfo(studentRecord& student){
+  student.contactInfo.address = "5467 FM 3456 Longview, TX 75603";
+}
+
+
+
+
+
+
+
 void structureTest(){
   testStruct record1;
   testStruct record2;
   testStruct record3;
+  
   cout << "\n First Print default initialization";
   printStruct(record1);
   printStruct(record2);
   printStruct(record3);
-  /*
+  
   cout << "\n Second Print Pass by Value";
   fillStructByVal(record1, 1, "John", 27);
   fillStructByVal(record2, 2, "Fred", 28);
   fillStructByVal(record3, 3, "Mary", 25);
+  
   cout << "\n Third Print after Pass by Value";
   printStruct(record1);
   printStruct(record2);
   printStruct(record3);
+  
   cout << "\n Second Print Pass by Reference";
   fillStructByRef(record1, 1, "John", 27);
   fillStructByRef(record2, 2, "Fred", 28);
@@ -91,6 +179,7 @@ void structureTest(){
   printStruct(record1);
   printStruct(record2);
   printStruct(record3);
+  
   record1.id  = 4;
   record1.name="Sarah";
   record1.age = 10;
@@ -107,6 +196,7 @@ void structureTest(){
   record1 = getStruct(7, "Marshall", 48);
   record2 = getStruct(8, "Stephen", 47);
   record3 = getStruct(9, "Tommy", 37);
+  
   cout << "\n Fifth Print after returning a structure";
   printStruct(record1);
   printStruct(record2);
