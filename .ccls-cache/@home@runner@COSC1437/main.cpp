@@ -2,6 +2,8 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include "car.h"
+#include "student.cpp"
 using namespace std;
 
 int getNumberOfSpaces(string stringToSearch);
@@ -14,24 +16,7 @@ struct testStruct {
   int age;
 };
 
-struct studentContact{
-  string email;
-  string address;
-  string phone;
-}; 
 
-struct studentName{
-  string first;
-  string last;
-  string middle;
-};
-
-struct studentRecord{
-  int id;
-  double gpa;
-  studentName name;
-  studentContact contactInfo;
-};
 
 void singleArrayTest();
 void multiArrayTest(int multiArray[3][3]);
@@ -44,106 +29,173 @@ testStruct getStruct(int, string, int);
 void printStruct(testStruct);
 void structureTest();
 void structureArrayTest();
+
+
 int getSum(int array[]);
 int getMin(int array[]);
 int getMax(int array[]);
 double getAvg(int array[]);
 const int SIZE_OF_ARRAY = 5;
 
+/* student structure code*/
+const int NUMBER_OF_STUDENTS = 3;
+
+struct studentContact{
+  std::string email;
+  std::string address;
+  std::string phone;
+}; 
+
+struct studentName{
+  std::string first;
+  std::string last;
+  std::string middle;
+};
+
+struct studentRecord{
+  int id;
+  double gpa;
+  studentName name;
+  studentContact contactInfo;
+};
+
+const std::string MENU_ITEMS[] = {
+  "Add New Student",
+  "Remove a Student",
+  "Update a Student",
+  "Add a Student to a Course",
+  "Get Average Grades for a Course",
+  "Store Student Assignments and Grades",
+  "Quit Application"
+};
+
+int getMenuSelection();
+void useMenuSelection(int selection, studentRecord students[]);
+int getStudentId();
+bool studentIdIsValid(int studentId, studentRecord students[]);
 void printRecord(studentRecord record);
 void printRecords(studentRecord records[]);
 void hardcodeStudents(studentRecord students[]);
 void changeRecordInfo(studentRecord& student);
-const int NUMBER_OF_STUDENTS = 3;
+/**/
+
+
+//const int NUMBER_OF_STUDENTS = 3;
 int main() {
+  Car car1("Toyota", "Rav-4");
+  car1.start();
+  cout << "\nStart Position: " << car1.getPosition();
+  car1.goForward();
+  car1.goForward();
+  cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  cout << "\n" << car1.getPosition();
+  car1.goForward();
+  car1.stop();
+  cout << "\nStop Position: " << car1.getPosition();
+
   string again = "n";
   int multiArray[3][3];
 
   //readIntegerListFile("integerListFile.txt");
-  
-  do{
+  //do{
     //structureTest();
     //structureArrayTest();
+
     //////////////////////////////////////////////
     // Build  student records
     studentRecord students[NUMBER_OF_STUDENTS];
     hardcodeStudents(students);
+  
+    int menuSelection;
+  do{
+    menuSelection = getMenuSelection();
+    useMenuSelection(menuSelection, students);
+  
+    
     // Display the student records
-    printRecords(students);
+    //     printRecords(students);
     // Change and display the student record
-    changeRecordInfo(students[0]);
-    printRecord(students[0]);
+    //     changeRecordInfo(students[0]);
+    //     printRecord(students[0]);
     // Create an array of student records
     // Create a menu for working with the records
+    // Add the ability to add new students
+    // Add the ability to remove students
+    // Add the ability to update a student
+    // Add the ability to add students to a course
+    // Add the ability to average the students' grades in a course
+    // Add the ability to store students' assignments and grades
     //////////////////////////////////////////////
+      //menuSelection = getMenuSelection();
+    } while (menuSelection != sizeof(MENU_ITEMS)/sizeof(MENU_ITEMS[0]));
     
-    
-    
+
+
+
+    // sub.push_back ({"Math", 70, 0});
+    /*
+      struct subject {
+          string name;
+          int marks;
+          int credits;
+      };
+      
+      
+      int main() {
+          vector<subject> sub;
+      
+          //Push back new subject created with default constructor.
+          sub.push_back(subject());
+      
+          //Vector now has 1 element @ index 0, so modify it.
+          sub[0].name = "english";
+      
+          //Add a new element if you want another:
+          sub.push_back(subject());
+      
+          //Modify its name and marks.
+          sub[1].name = "math";
+          sub[1].marks = 90;
+      }
+    */
+    /*
+Delete dynamically allocated array in C++
+A dynamic memory allocated array in C++ looks like:
+
+int* array = new int[100];
+C++Copy
+A dynamic memory allocated array can be deleted as:
+
+delete[] array;
+If we delete a specific element in a dynamic memory allocated array, then the total number of elements is reduced so we can reduce the total size of this array. This will involve:
+
+array = (int *)realloc(array, sizeof(int) * (N-1));
+C++Copy
+This deletes an element in true sense.
+*/
     
     
     //multiArrayTest(multiArray);
     //singleArrayTest();
     
-    cin.clear();
-    cin.ignore(100000,'\n');
-    cout << "\nAgain? Y/y or N/n : ";
-    getline(cin, again);
+  //  cin.clear();
+  //  cin.ignore(100000,'\n');
+  //  cout << "\nAgain? Y/y or N/n : ";
+  //  getline(cin, again);
     
-  } while (again[0] == 'y' || again[0] == 'Y');
+ // } while (again[0] == 'y' || again[0] == 'Y');
   cout << endl;
   return 0;
 }
 
-void printRecord(studentRecord record){
-  cout << "\n";
-  cout << "\t" << record.name.last << ", " << record.name.first << " " << record.name.middle;
-  cout << "\n\t\tID:  " << record.id;
-  cout << "\n\t\tGPA: " << fixed << setprecision(1) << record.gpa;
-  cout << "\n\t\tContact Information: ";
-  cout << "\n\t\t\tEmail: " << record.contactInfo.email;
-  cout << "\n\t\t\tPhone: " << record.contactInfo.phone;
-  cout << "\n\t\t\tAddress: " << record.contactInfo.address;
-  cout << endl;
-}
-void printRecords(studentRecord records[]){
-  cout << "\nStudent Records:";
-  for(int recordIndex=0; recordIndex<NUMBER_OF_STUDENTS; recordIndex++){
-    printRecord(records[recordIndex]);
-  }
-}
-
-void hardcodeStudents(studentRecord students[]){
-  students[0].id=1;
-  students[0].gpa=4.0;
-  students[0].name.first="Will";
-  students[0].name.middle="Anita";
-  students[0].name.last="Smith";
-  students[0].contactInfo.email="wSmith@Oscars.com";
-  students[0].contactInfo.address="123 Main, Kilgore, TX 75662";
-  students[0].contactInfo.phone = "555-555-5555";
-  
-  students[1].id=2;
-  students[1].gpa=3.5;
-  students[1].name.first="Chris";
-  students[1].name.middle="the";
-  students[1].name.last="Rock";
-  students[1].contactInfo.email="Chris@theRock.com";
-  students[1].contactInfo.address="321 Main, Kilgore, TX 75662";
-  students[1].contactInfo.phone = "555-555-5555";
-  
-  students[2].id=3;
-  students[2].gpa=3.0;
-  students[2].name.first="Jada";
-  students[2].name.middle="Pinkett";
-  students[2].name.last="Smith";
-  students[2].contactInfo.email="jSmith@Offended.com";
-  students[2].contactInfo.address="123 Main, Kilgore, TX 75662";
-  students[2].contactInfo.phone = "555-555-5555";
-}
-
-void changeRecordInfo(studentRecord& student){
-  student.contactInfo.address = "5467 FM 3456 Longview, TX 75603";
-}
 
 
 
@@ -249,7 +301,138 @@ void printStruct(testStruct ts){
 
 
 
+/* student structure code */
+int getMenuSelection(){
+  int menuSelection = -1;
+  std::cout << "\n***** MENU *****";
+  int menuSize = sizeof(MENU_ITEMS)/sizeof(MENU_ITEMS[0]);
+  for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
+    std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << MENU_ITEMS[itemIndex];
+  }
+  std::cout << "\n\n\n Enter Your selection: ";
 
+  std::cin >> menuSelection;
+  
+  while(!std::cin || menuSelection < 1 || menuSelection > menuSize){
+    std::cout << "\nThere was a problem with your selection. Try again: ";
+    std::cin.clear();
+    std::cin.ignore(100000,'\n');
+    std::cin >> menuSelection;
+  }
+  
+  return menuSelection;
+}
+  
+void useMenuSelection(int selection, studentRecord students[]){
+    /*
+  "1 Add New Student",
+  "2 Remove a Student",
+  "3 Update a Student",
+  "4 Add a Student to a Course",
+  "5 Get Average Grades for a Course",
+  "6 Store Student Assignments and Grades",
+  "7 Quit Application"
+    */
+  int studentId;
+  bool validId;
+  std::string validResponse;
+  switch(selection){
+    case 1:
+      std::cout << "case 1";
+      break;
+    case 2:
+      std::cout << "case 2";
+      break;
+    case 3:
+      studentId = getStudentId();
+      validId = studentIdIsValid(studentId, students);
+      validResponse = (validId)?"Valid":"InValid";
+      std::cout << "studentId: " << studentId << " " << validResponse << std::endl;
+      
+//      updateStudentRecordMenu()
+      break;
+    case 4:
+      std::cout << "case 4";
+      break;
+    case 5:
+      std::cout << "case 5";
+      break;
+    case 6:
+      std::cout << "case 6";
+      break;
+    default:
+      std::cout << "default";
+  }
+}
+
+int getStudentId(){
+  std::cout << "\nEnter student id: ";
+  int response;
+  std::cin >> response;
+  return response;
+}
+bool studentIdIsValid(int studentId, studentRecord students[]){
+  bool validId = false;
+  for(int recordIndex=0; recordIndex < NUMBER_OF_STUDENTS;recordIndex++){
+    if(students[recordIndex].id == studentId){
+      validId = true;
+      break;
+    }
+  }
+  return validId;
+}
+
+void printRecord(studentRecord record){
+  std::cout << "\n";
+  std::cout << "\t" << record.name.last << ", " << record.name.first << " " << record.name.middle;
+  std::cout << "\n\t\tID:  " << record.id;
+  std::cout << "\n\t\tGPA: " << std::fixed << std::setprecision(1) << record.gpa;
+  std::cout << "\n\t\tContact Information: ";
+  std::cout << "\n\t\t\tEmail: " << record.contactInfo.email;
+  std::cout << "\n\t\t\tPhone: " << record.contactInfo.phone;
+  std::cout << "\n\t\t\tAddress: " << record.contactInfo.address;
+  std::cout << std::endl;
+}
+void printRecords(studentRecord records[]){
+  std::cout << "\nStudent Records:";
+  for(int recordIndex=0; recordIndex<NUMBER_OF_STUDENTS; recordIndex++){
+    printRecord(records[recordIndex]);
+  }
+}
+
+void hardcodeStudents(studentRecord students[]){
+  students[0].id=1;
+  students[0].gpa=4.0;
+  students[0].name.first="Will";
+  students[0].name.middle="Anita";
+  students[0].name.last="Smith";
+  students[0].contactInfo.email="wSmith@Oscars.com";
+  students[0].contactInfo.address="123 Main, Kilgore, TX 75662";
+  students[0].contactInfo.phone = "555-555-5555";
+  
+  students[1].id=2;
+  students[1].gpa=3.5;
+  students[1].name.first="Chris";
+  students[1].name.middle="the";
+  students[1].name.last="Rock";
+  students[1].contactInfo.email="Chris@theRock.com";
+  students[1].contactInfo.address="321 Main, Kilgore, TX 75662";
+  students[1].contactInfo.phone = "555-555-5555";
+  
+  students[2].id=3;
+  students[2].gpa=3.0;
+  students[2].name.first="Jada";
+  students[2].name.middle="Pinkett";
+  students[2].name.last="Smith";
+  students[2].contactInfo.email="jSmith@Offended.com";
+  students[2].contactInfo.address="123 Main, Kilgore, TX 75662";
+  students[2].contactInfo.phone = "555-555-5555";
+}
+
+void changeRecordInfo(studentRecord& student){
+  student.contactInfo.address = "5467 FM 3456 Longview, TX 75603";
+}
+/**/
 
 
 
