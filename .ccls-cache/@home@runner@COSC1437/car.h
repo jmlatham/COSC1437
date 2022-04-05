@@ -11,13 +11,16 @@ class Car{
     int _direction = 1; // 0=North 1=East 2=South 3=West
     bool _carIsRunning = false;
   public:
+    static int _totalMileage;
     Car(std::string make, std::string model);
-    void goForward();
-    void goBackward();
+    int goForward();
+    int goBackward();
     void stop();
     void start();
-    void turnRight();
-    void turnLeft();
+    int turnRight();
+    int turnLeft();
     std::string getPosition();
+    std::string getMakeModel();
+    std::string getTotalMileage();
 };
 #endif

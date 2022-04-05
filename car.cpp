@@ -98,3 +98,67 @@ std::string Car::getTotalMileage(){
   return std::to_string(_totalMileage);
   //return "don't know";
 }
+
+void Car::runCarCode(){
+  Car car1("Toyota", "Rav-4");
+  car1.start();
+  std::cout << "\nStart Position: " << car1.getPosition();
+  car1.goForward();
+  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
+  car1.goForward();
+  std::cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  std::cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  std::cout << "\n" << car1.getPosition();
+  car1.turnRight();
+  car1.goForward();
+  std::cout << "\n" << car1.getPosition();
+  car1.goForward();
+  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
+  car1.stop();
+  std::cout << "\nStop Position: " << car1.getPosition();
+
+  Car car2("Ford", "F-150");
+  car2.start();
+  std::cout << "\nStart Position: " << car2.getPosition();
+  car2.goForward();
+  car2.goForward();
+  car2.goForward();
+  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
+  std::cout << "\n" << car2.getPosition();
+  car2.turnRight();
+  car2.goForward();
+  std::cout << "\n" << car2.getPosition();
+  car2.turnRight();
+  car2.goForward();
+  std::cout << "\n" << car2.getPosition();
+  car2.turnRight();
+  car2.goForward();
+  std::cout << "\n" << car2.getPosition();
+  car2.goForward();
+  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
+  std::cout << "\n TotalMileage car2: " << car2.getTotalMileage();
+  car2.stop();
+  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
+  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
+
+  car1 = car2;
+  std::cout << "\n after copying data.....";
+  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
+  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
+  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
+
+  car1.start();
+  car1.goForward();
+  car1.goForward();
+  car1.goForward();
+  car1.goForward();
+
+  std::cout << "\n after changing data.....";
+  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
+  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
+  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
+}
