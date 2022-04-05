@@ -38,6 +38,9 @@ int main()
       case 4:
         runArrayCode();
         break;
+      case 5:
+        readIntegerListFile("integerListFile.txt");
+        break;
       default:
         std::cout << "That option is not available.";
     }
@@ -72,15 +75,16 @@ void printMenu(){
     "Run Car Code",
     "Run Student Code",
     "Run Struct Code",
-    "Run Array Code"
+    "Run Array Code",
+    "Read Integer List File"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
-  std::cout << "\n\n<----- MAIN MENU ----->";
+  std::cout << "\n\n<--------- MAIN MENU --------->";
   std::cout << "\n\t0. Quit";
   for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
     std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << menuItems[itemIndex];
   }
-  std::cout << "\n<--------------------->";
+  std::cout << "\n<----------------------------->";
   std::cout << "\n\n\n Enter Your selection: ";
 }
 int getMenuSelection(){
@@ -107,6 +111,7 @@ void readIntegerListFile(std::string filename){
         getline (myfile, myline);
         std::cout << "\nNumber of spaces: " << getNumberOfSpaces(myline) << '\n';
         std::cout << myline << ": " << myfile.tellg() << '\n';
+        // tellg() is the position of the cursor in the file. I suppose -1 means the end of the file.
       }
     }
     myfile.close();
@@ -115,22 +120,24 @@ void readIntegerListFile(std::string filename){
 
 int getNumberOfSpaces(std::string stringToSearch){
   int counter = 0;
-  bool previousCharIsSpace = true;
+  bool previousCharIsSpace = false;
   for(int i=0; (unsigned)i<stringToSearch.size(); i++){
     if(stringToSearch[i] != ' ' && stringToSearch[i] != '\n'){
-      if(previousCharIsSpace && stringToSearch[i] != '\n'){
+      if(previousCharIsSpace){
         counter++;
+        //std::cout << "\n\t\t\t" << stringToSearch[i] << "-" << std::to_string(counter);
       }
       previousCharIsSpace = false;
     } else {
       previousCharIsSpace = true;
     }
   }
+  std::cout << std::endl;
   return counter;
 }
 
 
-/*
+/* Using Vector code
 // sub.push_back ({"Math", 70, 0});
     /*
       struct subject {
@@ -156,8 +163,8 @@ int getNumberOfSpaces(std::string stringToSearch){
           sub[1].name = "math";
           sub[1].marks = 90;
       }
-    */
-    /*
+*/
+/* Using dynamic arrays
 Delete dynamically allocated array in C++
 A dynamic memory allocated array in C++ looks like:
 
@@ -171,91 +178,4 @@ If we delete a specific element in a dynamic memory allocated array, then the to
 array = (int *)realloc(array, sizeof(int) * (N-1));
 C++Copy
 This deletes an element in true sense.
-*/
-
-/*
-string again = "n";
-  int userInput1;
-  int userInput2;
-  int userInput3;
-  int userInput4;
-  int userInput5;
-  int sum;
-  int max;
-  int min;
-  double avg = 0.0;
-  
-  do{
-    cout << "\nEnter an integer:";
-    cin >> userInput1;
-    cout << "\nEnter an integer:";
-    cin >> userInput2;
-    cout << "\nEnter an integer:";
-    cin >> userInput3;
-    cout << "\nEnter an integer:";
-    cin >> userInput4;
-    cout << "\nEnter an integer:";
-    cin >> userInput5;
-    
-    cout << userInput1 << " ";
-    cout << userInput2 << " ";
-    cout << userInput3 << " ";
-    cout << userInput4 << " ";
-    cout << userInput5 << " ";
-
-    cout << "\n\tThe sum of the numbers is ";
-    sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
-    cout << sum << endl;
-
-    
-    max = userInput1;
-    min = userInput1;
-    if (userInput2 > max) {
-      max = userInput2;
-    }
-    if (userInput2 < min) {
-      min = userInput2;
-    }
-
-    if (userInput3 > max) {
-      max = userInput3;
-    }
-    if (userInput3 < min) {
-      min = userInput3;
-    }
-    
-    if (userInput4 > max) {
-      max = userInput4;
-    }
-    if (userInput4 < min) {
-      min = userInput4;
-    }
-    
-    if (userInput5 > max) {
-      max = userInput5;
-    }
-    if (userInput5 < min) {
-      min = userInput5;
-    }
-
-    cout << "The biggest number is " << max << "\n";
-    cout << "The \"smallest\" number is " << min << "\n";
-
-    avg = sum / 5.0;
-
-    cout << "The average of the five numbers is " << avg << endl;
-    
-    //////////////////////////////////////////////
-    // Write a program that will:
-    // 1. receive five numbers from the user and
-    //    display all five numbers to the user
-    // 2. find the smallest and display it
-    // 3. find the largest and display it
-    // 4. find the sum and display it
-    // 5. find the average and display it
-    //////////////////////////////////////////////
-    // upon successful completion of 1 - 5:
-    // 1. refactor to be separated into functions
-    // 2. refactor to use arrays
-    //////////////////////////////////////////////
 */

@@ -28,7 +28,6 @@ class Student
     
     static const std::string MENU_ITEMS[];
 
-    Student();
     int getMenuSelection();
     void useMenuSelection(int selection, studentRecord students[]);
     int getStudentId();
@@ -44,6 +43,7 @@ class Student
     void getCourseAverage(int courseId);
     void storeStudentAssignmentGrades(int studentId);
 public:
+    Student();
     void runStudentCode();
 };
 
