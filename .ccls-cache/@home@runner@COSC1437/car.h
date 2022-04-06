@@ -22,5 +22,6 @@ class Car{
     std::string getPosition();
     std::string getMakeModel();
     std::string getTotalMileage();
+    void runCarCode();
 };
 #endif

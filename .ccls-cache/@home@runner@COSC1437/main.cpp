@@ -6,8 +6,8 @@
 #include "student.h"
 #include "structTestClass.h"
 #include "arrayTestClass.h"
+#include "diceRollerTest.h"
 
-//using namespace std;
 
 int getNumberOfSpaces(std::string stringToSearch);
 void readIntegerListFile(std::string filename);
@@ -18,9 +18,8 @@ void runStructCode();
 void runArrayCode();
 void printMenu();
 int getMenuSelection();
+void runDiceTestCode();
 
-
-//const int NUMBER_OF_STUDENTS = 3;
 int main() 
 {
   int menuSelection = -1;
@@ -28,6 +27,13 @@ int main()
   menuSelection = getMenuSelection();
   while (menuSelection > 0)
   {
+    /*
+    Constructors and overloaded constructors
+    constructor with default values
+    default constructor
+    const member functions and const objects
+    ADT: type name, domain, operations
+    */
     switch(menuSelection){
       case 1:
         runCarCode();
@@ -41,6 +47,12 @@ int main()
       case 4:
         runArrayCode();
         break;
+      case 5:
+        readIntegerListFile("integerListFile.txt");
+        break;
+      case 6:
+        runDiceTestCode();
+        break;
       default:
         std::cout << "That option is not available.";
     }
@@ -50,7 +62,103 @@ int main()
   }
   std::cout << std::endl;
   return 0;
-    // sub.push_back ({"Math", 70, 0});
+    
+}
+
+void runCarCode(){
+  Car car1("My", "car");
+  car1.runCarCode();
+}
+void runStudentCode(){
+  Student student1;
+  student1.runStudentCode();
+}
+void runStructCode(){
+  StructTestClass structTest;
+  structTest.runStructureTests();
+}
+void runArrayCode(){
+  ArrayTestClass arrayTest;
+  arrayTest.runArrayTestCode();
+}
+
+void printMenu(){
+  std::string menuItems[] = {
+    "Run Car Code",
+    "Run Student Code",
+    "Run Struct Code",
+    "Run Array Code",
+    "Read Integer List File",
+    "Run Dice Code"
+  };
+  int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
+  std::cout << "\n\n<--------- MAIN MENU --------->";
+  std::cout << "\n\t0. Quit";
+  for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
+    std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << menuItems[itemIndex];
+  }
+  std::cout << "\n<----------------------------->";
+  std::cout << "\n\n\n Enter Your selection: ";
+}
+int getMenuSelection(){
+  int selection = -1;
+  std::cin >> selection;
+  if(!std::cin)
+  {
+    std::cout << "\n\tThe selection needs to be an integer. Please try again: ";
+    std::cin.clear();
+    std::cin.ignore(100000,'\n');
+    return getMenuSelection();
+  }
+  return selection;
+}
+
+void runDiceTestCode()
+{
+  std::cout << "run dice code";
+  DiceRollerTest drTest;
+  drTest.runTests();
+}
+
+
+
+void readIntegerListFile(std::string filename){
+  std::ifstream myfile; 
+    myfile.open(filename);
+    std::string myline;
+    if ( myfile.is_open() ) {
+      while ( myfile ) {
+        getline (myfile, myline);
+        std::cout << "\nNumber of spaces: " << getNumberOfSpaces(myline) << '\n';
+        std::cout << myline << ": " << myfile.tellg() << '\n';
+        // tellg() is the position of the cursor in the file. I suppose -1 means the end of the file.
+      }
+    }
+    myfile.close();
+    return;
+}
+
+int getNumberOfSpaces(std::string stringToSearch){
+  int counter = 0;
+  bool previousCharIsSpace = false;
+  for(int i=0; (unsigned)i<stringToSearch.size(); i++){
+    if(stringToSearch[i] != ' ' && stringToSearch[i] != '\n'){
+      if(previousCharIsSpace){
+        counter++;
+        //std::cout << "\n\t\t\t" << stringToSearch[i] << "-" << std::to_string(counter);
+      }
+      previousCharIsSpace = false;
+    } else {
+      previousCharIsSpace = true;
+    }
+  }
+  std::cout << std::endl;
+  return counter;
+}
+
+
+/* Using Vector code
+// sub.push_back ({"Math", 70, 0});
     /*
       struct subject {
           string name;
@@ -75,8 +183,8 @@ int main()
           sub[1].name = "math";
           sub[1].marks = 90;
       }
-    */
-    /*
+*/
+/* Using dynamic arrays
 Delete dynamically allocated array in C++
 A dynamic memory allocated array in C++ looks like:
 
@@ -90,234 +198,4 @@ If we delete a specific element in a dynamic memory allocated array, then the to
 array = (int *)realloc(array, sizeof(int) * (N-1));
 C++Copy
 This deletes an element in true sense.
-*/
-    
-    
-    
-    
-
-}
-
-void runCarCode(){
-  Car car1("Toyota", "Rav-4");
-  car1.start();
-  std::cout << "\nStart Position: " << car1.getPosition();
-  car1.goForward();
-  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
-  car1.goForward();
-  std::cout << "\n" << car1.getPosition();
-  car1.turnRight();
-  car1.goForward();
-  std::cout << "\n" << car1.getPosition();
-  car1.turnRight();
-  car1.goForward();
-  std::cout << "\n" << car1.getPosition();
-  car1.turnRight();
-  car1.goForward();
-  std::cout << "\n" << car1.getPosition();
-  car1.goForward();
-  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
-  car1.stop();
-  std::cout << "\nStop Position: " << car1.getPosition();
-
-  Car car2("Ford", "F-150");
-  car2.start();
-  std::cout << "\nStart Position: " << car2.getPosition();
-  car2.goForward();
-  car2.goForward();
-  car2.goForward();
-  std::cout << "\n TotalMileage: " << car1.getTotalMileage();
-  std::cout << "\n" << car2.getPosition();
-  car2.turnRight();
-  car2.goForward();
-  std::cout << "\n" << car2.getPosition();
-  car2.turnRight();
-  car2.goForward();
-  std::cout << "\n" << car2.getPosition();
-  car2.turnRight();
-  car2.goForward();
-  std::cout << "\n" << car2.getPosition();
-  car2.goForward();
-  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
-  std::cout << "\n TotalMileage car2: " << car2.getTotalMileage();
-  car2.stop();
-  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
-  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
-
-  car1 = car2;
-  std::cout << "\n after copying data.....";
-  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
-  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
-  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
-
-  car1.start();
-  car1.goForward();
-  car1.goForward();
-  car1.goForward();
-  car1.goForward();
-
-  std::cout << "\n after changing data.....";
-  std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
-  std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
-  std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
-}
-void runStudentCode(){
-  Student student1;
-  student1.runStudentCode();
-}
-void runStructCode(){
-  StructTestClass structTest;
-  structTest.runStructureTests();
-}
-void runArrayCode(){
-  ArrayTestClass arrayTest;
-  arrayTest.runArrayTestCode();
-}
-
-void printMenu(){
-  std::string menuItems[] = {
-    "Run Car Code",
-    "Run Student Code",
-    "Run Struct Code",
-    "Run Array Code"
-  };
-  int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
-  std::cout << "\n\t0. Quit";
-  for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
-    std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << menuItems[itemIndex];
-  }
-  std::cout << "\n\n\n Enter Your selection: ";
-}
-int getMenuSelection(){
-  int selection = -1;
-  std::cin >> selection;
-  if(!std::cin)
-  {
-    std::cout << "\n\tThe selection needs to be an integer. Please try again: ";
-    std::cin.clear();
-    std::cin.ignore(100000,'\n');
-    return getMenuSelection();
-  }
-  return selection;
-}
-
-
-
-void readIntegerListFile(std::string filename){
-  std::ifstream myfile; 
-    myfile.open(filename);
-    std::string myline;
-    if ( myfile.is_open() ) {
-      while ( myfile ) {
-        getline (myfile, myline);
-        std::cout << "\nNumber of spaces: " << getNumberOfSpaces(myline) << '\n';
-        std::cout << myline << ": " << myfile.tellg() << '\n';
-      }
-    }
-    myfile.close();
-    return;
-}
-
-int getNumberOfSpaces(std::string stringToSearch){
-  int counter = 0;
-  bool previousCharIsSpace = true;
-  for(int i=0; (unsigned)i<stringToSearch.size(); i++){
-    if(stringToSearch[i] != ' ' && stringToSearch[i] != '\n'){
-      if(previousCharIsSpace && stringToSearch[i] != '\n'){
-        counter++;
-      }
-      previousCharIsSpace = false;
-    } else {
-      previousCharIsSpace = true;
-    }
-  }
-  return counter;
-}
-
-
-/*
-string again = "n";
-  int userInput1;
-  int userInput2;
-  int userInput3;
-  int userInput4;
-  int userInput5;
-  int sum;
-  int max;
-  int min;
-  double avg = 0.0;
-  
-  do{
-    cout << "\nEnter an integer:";
-    cin >> userInput1;
-    cout << "\nEnter an integer:";
-    cin >> userInput2;
-    cout << "\nEnter an integer:";
-    cin >> userInput3;
-    cout << "\nEnter an integer:";
-    cin >> userInput4;
-    cout << "\nEnter an integer:";
-    cin >> userInput5;
-    
-    cout << userInput1 << " ";
-    cout << userInput2 << " ";
-    cout << userInput3 << " ";
-    cout << userInput4 << " ";
-    cout << userInput5 << " ";
-
-    cout << "\n\tThe sum of the numbers is ";
-    sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
-    cout << sum << endl;
-
-    
-    max = userInput1;
-    min = userInput1;
-    if (userInput2 > max) {
-      max = userInput2;
-    }
-    if (userInput2 < min) {
-      min = userInput2;
-    }
-
-    if (userInput3 > max) {
-      max = userInput3;
-    }
-    if (userInput3 < min) {
-      min = userInput3;
-    }
-    
-    if (userInput4 > max) {
-      max = userInput4;
-    }
-    if (userInput4 < min) {
-      min = userInput4;
-    }
-    
-    if (userInput5 > max) {
-      max = userInput5;
-    }
-    if (userInput5 < min) {
-      min = userInput5;
-    }
-
-    cout << "The biggest number is " << max << "\n";
-    cout << "The \"smallest\" number is " << min << "\n";
-
-    avg = sum / 5.0;
-
-    cout << "The average of the five numbers is " << avg << endl;
-    
-    //////////////////////////////////////////////
-    // Write a program that will:
-    // 1. receive five numbers from the user and
-    //    display all five numbers to the user
-    // 2. find the smallest and display it
-    // 3. find the largest and display it
-    // 4. find the sum and display it
-    // 5. find the average and display it
-    //////////////////////////////////////////////
-    // upon successful completion of 1 - 5:
-    // 1. refactor to be separated into functions
-    // 2. refactor to use arrays
-    //////////////////////////////////////////////
 */

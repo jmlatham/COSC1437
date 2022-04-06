@@ -6,6 +6,7 @@
 #include "student.h"
 #include "structTestClass.h"
 #include "arrayTestClass.h"
+#include "diceRollerTest.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -17,6 +18,7 @@ void runStructCode();
 void runArrayCode();
 void printMenu();
 int getMenuSelection();
+void runDiceTestCode();
 
 int main() 
 {
@@ -25,6 +27,13 @@ int main()
   menuSelection = getMenuSelection();
   while (menuSelection > 0)
   {
+    /*
+    Constructors and overloaded constructors
+    constructor with default values
+    default constructor
+    const member functions and const objects
+    ADT: type name, domain, operations
+    */
     switch(menuSelection){
       case 1:
         runCarCode();
@@ -40,6 +49,9 @@ int main()
         break;
       case 5:
         readIntegerListFile("integerListFile.txt");
+        break;
+      case 6:
+        runDiceTestCode();
         break;
       default:
         std::cout << "That option is not available.";
@@ -76,7 +88,8 @@ void printMenu(){
     "Run Student Code",
     "Run Struct Code",
     "Run Array Code",
-    "Read Integer List File"
+    "Read Integer List File",
+    "Run Dice Code"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";
@@ -98,6 +111,13 @@ int getMenuSelection(){
     return getMenuSelection();
   }
   return selection;
+}
+
+void runDiceTestCode()
+{
+  std::cout << "run dice code";
+  DiceRollerTest drTest;
+  drTest.runTests();
 }
 
 

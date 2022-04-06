@@ -10,7 +10,7 @@ const std::string Student::MENU_ITEMS[] = {
       "Remove a Student",
       "Update a Student",
       "Add a Student to a Course",
-      "Get Average Grades for a Course",
+      "Get Average Grade for a Course",
       "Store Student Assignments and Grades",
       "Quit Application"
     };
@@ -21,11 +21,12 @@ Student::Student(){
 }
 int Student::getMenuSelection(){
   int menuSelection = -1;
-  std::cout << "\n***** MENU *****";
+  std::cout << "\n\n***** STUDENT MENU *****";
   int menuSize = sizeof(MENU_ITEMS)/sizeof(MENU_ITEMS[0]);
   for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
     std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << MENU_ITEMS[itemIndex];
   }
+  std::cout << "\n************************";
   std::cout << "\n\n\n Enter Your selection: ";
 
   std::cin >> menuSelection;
@@ -41,44 +42,30 @@ int Student::getMenuSelection(){
 }
   
 void Student::useMenuSelection(int selection, studentRecord students[]){
-    /*
-  "1 Add New Student",
-  "2 Remove a Student",
-  "3 Update a Student",
-  "4 Add a Student to a Course",
-  "5 Get Average Grades for a Course",
-  "6 Store Student Assignments and Grades",
-  "7 Quit Application"
-    */
   int studentId;
   bool validId;
   std::string validResponse;
   switch(selection){
     case 1:
-      std::cout << "case 1";
+      addNewStudent();
       break;
     case 2:
-      std::cout << "case 2";
+      removeStudent(getStudentId());
       break;
     case 3:
-      studentId = getStudentId();
-      validId = studentIdIsValid(studentId, students);
-      validResponse = (validId)?"Valid":"InValid";
-      std::cout << "studentId: " << studentId << " " << validResponse << std::endl;
-      
-//      updateStudentRecordMenu()
+      updateStudent(getStudentId(), students);
       break;
     case 4:
-      std::cout << "case 4";
+      addStudentToCourse(getStudentId(), 0);
       break;
     case 5:
-      std::cout << "case 5";
+      getCourseAverage(0);
       break;
     case 6:
-      std::cout << "case 6";
+      storeStudentAssignmentGrades(getStudentId());
       break;
     default:
-      std::cout << "default";
+      std::cout << "Quit!!";
   }
 }
 
@@ -149,6 +136,31 @@ void Student::hardcodeStudents(studentRecord students[]){
 void Student::changeRecordInfo(studentRecord& student){
   student.contactInfo.address = "5467 FM 3456 Longview, TX 75603";
 }
+
+void Student::addNewStudent(){
+  std::cout << "Add a New Student";
+}
+void Student::removeStudent(int studentId){
+  std::cout << "Remove a Student: " << std::to_string(studentId);
+}
+void Student::updateStudent(int studentId, studentRecord students[]){
+  bool validId = false;
+  std::string validResponse;
+  //studentId = getStudentId();
+  validId = studentIdIsValid(studentId, students);
+  validResponse = (validId)?"Valid":"InValid";
+  std::cout << "studentId: " << studentId << " " <<  validResponse << std::endl;
+}
+void Student::addStudentToCourse(int studentId, int courseId){
+  std::cout << "Add a Student to a Course";
+}
+void Student::getCourseAverage(int courseId){
+  std::cout << "Get Average Grade for a Course";
+}
+void Student::storeStudentAssignmentGrades(int studentId){
+  std::cout << "Store Student Assignments and Grades";
+}
+
 /**/
 
 void Student::runStudentCode(){

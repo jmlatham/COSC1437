@@ -5,7 +5,6 @@
 class Student
 {
   private:
-  public:
     static const int NUMBER_OF_STUDENTS = 3;
 
     struct studentContact{
@@ -29,7 +28,6 @@ class Student
     
     static const std::string MENU_ITEMS[];
 
-    Student();
     int getMenuSelection();
     void useMenuSelection(int selection, studentRecord students[]);
     int getStudentId();
@@ -38,6 +36,14 @@ class Student
     void printRecords(studentRecord records[]);
     void hardcodeStudents(studentRecord students[]);
     void changeRecordInfo(studentRecord& student);
+    void addNewStudent();
+    void removeStudent(int studentId);
+    void updateStudent(int studentId, studentRecord students[]);
+    void addStudentToCourse(int studentId, int courseId);
+    void getCourseAverage(int courseId);
+    void storeStudentAssignmentGrades(int studentId);
+public:
+    Student();
     void runStudentCode();
 };
 
