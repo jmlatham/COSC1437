@@ -26,6 +26,7 @@ void DiceRollerTest::runTests()
         } else {
           dRoller.setDiceCount(diceCount);
         }
+        std::cout << "\nHow many side? ";
         break;
       case 2:
         std::cout << "display results";

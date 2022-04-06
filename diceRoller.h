@@ -8,7 +8,7 @@ class DiceRoller
     DiceRoller(int = 1);
     void setDiceCount(int numOfDice);
     void rollDice();
-    std::vector<int> getDiceRolls();
+    std::vector<int> getDiceRolls() const;
     
   private:
     int _diceCount;

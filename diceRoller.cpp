@@ -24,8 +24,8 @@ void DiceRoller::setDiceCount(int numOfDice)
 
 void DiceRoller::rollDice()
 {
-  Die die;
-  //std::cout << "dice Count: " << _diceCount;
+  Die die(10);
+  
   for(int i = 0; i < _diceCount; i++)
   {
     die.roll();
@@ -33,7 +33,7 @@ void DiceRoller::rollDice()
   }
 }
 
-std::vector<int> DiceRoller::getDiceRolls() 
+std::vector<int> DiceRoller::getDiceRolls() const
 {
   return _diceList;
 }
