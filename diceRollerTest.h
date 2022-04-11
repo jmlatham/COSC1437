@@ -11,5 +11,6 @@ class DiceRollerTest
     void displayMenu();
     int getUserInput();
     void displayResults(std::vector<int> diceRolls);
+    std::vector<int> buildVector(int, int);
 };
 #endif

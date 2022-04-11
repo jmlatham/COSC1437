@@ -7,6 +7,8 @@
 #include "structTestClass.h"
 #include "arrayTestClass.h"
 #include "diceRollerTest.h"
+#include "sampleClass.h"
+#include "lesson10_19.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -19,6 +21,8 @@ void runArrayCode();
 void printMenu();
 int getMenuSelection();
 void runDiceTestCode();
+void runSampleClassCode();
+void runLesson10_19Code();
 
 int main() 
 {
@@ -53,6 +57,12 @@ int main()
       case 6:
         runDiceTestCode();
         break;
+      case 7:
+        runSampleClassCode();
+        break;
+      case 8:
+        runLesson10_19Code();
+        break;
       default:
         std::cout << "That option is not available.";
     }
@@ -63,6 +73,18 @@ int main()
   std::cout << std::endl;
   return 0;
     
+}
+
+void runLesson10_19Code()
+{
+  Lesson10_19 lesson;
+  lesson.runTests();
+}
+
+void runSampleClassCode()
+{
+  Sample sample;
+  sample.runTests();
 }
 
 void runCarCode(){
@@ -89,7 +111,8 @@ void printMenu(){
     "Run Struct Code",
     "Run Array Code",
     "Read Integer List File",
-    "Run Dice Code"
+    "Run Dice Code",
+    "Run Sample class"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";

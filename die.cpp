@@ -9,6 +9,11 @@ Die::Die(int sides)
   srand(time(0));
 }
 
+void Die::setSideCount(int numberOfSides)
+{
+  _sides = numberOfSides;
+}
+
 void Die::roll()
 {
   _num = rand() % _sides + 1;
