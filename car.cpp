@@ -10,7 +10,7 @@ Car::Car(std::string make, std::string model)
 }
 int Car::goForward()
 {
-  if(_carIsRunning){
+  if(Vehicle::isVehicleStarted()){
     _totalMileage++;
     switch(_direction)
     {
@@ -32,7 +32,7 @@ int Car::goForward()
 }
 int Car::goBackward()
 {
-  if(_carIsRunning){
+  if(Vehicle::isVehicleStarted()){
     _totalMileage++;
     switch(_direction)
     {
@@ -52,17 +52,17 @@ int Car::goBackward()
   }
   return -1;
 }
-void Car::stop()
-{
-  _carIsRunning = false;
-}
-void Car::start()
-{
-  _carIsRunning = true;
-}
+// void Car::stop()
+// {
+//   _carIsRunning = false;
+// }
+// void Car::start()
+// {
+//   _carIsRunning = true;
+// }
 int Car::turnRight()
 {
-  if(_carIsRunning){
+  if(Vehicle::isVehicleStarted()){
     _direction++;
     if(_direction > 3)
     {
@@ -74,7 +74,7 @@ int Car::turnRight()
 }
 int Car::turnLeft()
 {
-  if(_carIsRunning)
+  if(Vehicle::isVehicleStarted())
   {
     _direction--;
     if(_direction < 0)
@@ -161,4 +161,28 @@ void Car::runCarCode(){
   std::cout << "\nStop Position: " << car2.getMakeModel() << car2.getPosition();
   std::cout << "\nStop Position: " << car1.getMakeModel() << car1.getPosition();
   std::cout << "\n TotalMileage car1: " << car1.getTotalMileage();
+  // A function inherited from the Vehicle class
+  car1.setColor("Forest Green");
+  // A function inherited from the Vehicle class
+  car1.setWeight(2200);
+  std::cout << "\nThe color of the car is: " << car1.getColor() << std::endl;
+  std::cout << "The weight of the car is: " << car1.getWeight() << " lbs " << std::endl;
+  std::cout << "The car is currently traveling at: " << car1.floorIt() << " mph" << std::endl;
+}
+double Car::floorIt() {
+    return maxSpeed;
+}
+std::string Car::getColor() {
+  //return Vehicle::getColor();
+  std::cout << "all cars are blue.";
+  return "";
+}
+double Car::getWeight2() {
+  return Vehicle::getWeight();
+}
+void Car::setColor2(std::string color){
+  Vehicle::setColor(color);
+}
+void Car::setWeight2(double weight){
+  Vehicle::setWeight(weight);
 }

@@ -100,3 +100,85 @@ void StructTestClass::runStructureTests(){
   structureTest();
   structureArrayTest();
 }
+void StructTestClass::runStructurePointerTests()
+{
+  runPointerStructureOne();
+  runPointerStructureTwo();
+}
+void StructTestClass::runPointerStructureOne()
+{
+  std::string title = " Structure Test One ";
+  printTitle(title);
+  struct studentType
+  {
+    char name[26];
+    double gpa;
+    int sID;
+    char grade;
+  };
+  studentType student;
+  studentType *studentPtr;
+
+  studentPtr = &student;
+  (*studentPtr).gpa = 3.9;
+  std::cout << "\nGPA.  : " << student.gpa;
+  std::cout << "\nGPA  .: " << (*studentPtr).gpa;
+
+  std::cout << "\nGPA ->: " << studentPtr->gpa;
+  studentPtr->gpa = 3.75;
+  std::cout << "\nGPA ->: " << studentPtr->gpa;
+  std::cout << "\nGPA.  : " << student.gpa;
+  printFooter(title);
+}
+void StructTestClass::runPointerStructureTwo()
+{
+  std::string title = " Structure Test Two ";
+  printTitle(title);
+  struct studentType2
+  {
+    char name[26];
+    double *gpa=NULL;
+    int sID;
+    char grade;
+  };
+  double gpa = 2.3;
+  studentType2 student2;
+  studentType2 *student2Ptr;
+  student2.gpa = &gpa;
+  student2Ptr = &student2;
+
+  std::cout << "\nGPA2   : " << student2.gpa;
+  std::cout << "\nGPA2  *: " << *student2.gpa;
+  std::cout << "\nGPA2 ->: " << student2Ptr->gpa;
+  std::cout << "\nGPA2*->: " << *student2Ptr->gpa;
+  printFooter(title);
+}
+void runPointerStructureThree()
+{
+  
+}
+
+void StructTestClass::printTitle(std::string title, char borderChar)
+{
+  std::string borderLine = buildBorderLine(borderChar, title.length() + 2);
+  std::cout << "\n" << borderLine << std::endl;
+  std::cout << borderChar;
+  std::cout << title;
+  std::cout << borderChar<< std::endl;
+  std::cout << borderLine << std::endl;
+  
+}
+void StructTestClass::printFooter(std::string title, char borderChar)
+{
+  std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
+}
+
+std::string StructTestClass::buildBorderLine(char borderChar, int length)
+{
+  std::string borderLine = "";
+  for(int i = 0; i<length; i++)
+    {
+      borderLine += borderChar;
+    }
+  return borderLine;
+}

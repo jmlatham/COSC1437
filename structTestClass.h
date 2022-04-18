@@ -16,8 +16,14 @@ private:
   void printStruct(testStruct);
   void structureTest();
   void structureArrayTest();
+  void runPointerStructureOne();
+  void runPointerStructureTwo();
+  void printTitle(std::string, char borderChar='*');
+  void printFooter(std::string, char borderChar='*');
+  std::string buildBorderLine(char, int);
 public:
   void runStructureTests();
+  void runStructurePointerTests();
 };
 
 #endif

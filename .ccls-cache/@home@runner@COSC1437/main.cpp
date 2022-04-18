@@ -2,6 +2,7 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <cstring>
 #include "car.h"
 #include "student.h"
 #include "structTestClass.h"
@@ -9,6 +10,8 @@
 #include "diceRollerTest.h"
 #include "sampleClass.h"
 #include "lesson10_19.h"
+// #include "startable.h"
+#include "stop.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -23,6 +26,13 @@ int getMenuSelection();
 void runDiceTestCode();
 void runSampleClassCode();
 void runLesson10_19Code();
+void runPointerTestCode();
+void runPointerTestOne();
+void runPointerTestTwo();
+void runPointerTestNew();
+void printTitle(std::string, char);
+void printFooter(std::string, char);
+std::string buildBorderLine(char borderChar, int length);
 
 int main() 
 {
@@ -63,6 +73,9 @@ int main()
       case 8:
         runLesson10_19Code();
         break;
+      case 9:
+        runPointerTestCode();
+        break;
       default:
         std::cout << "That option is not available.";
     }
@@ -73,6 +86,146 @@ int main()
   std::cout << std::endl;
   return 0;
     
+}
+
+std::string buildBorderLine(char borderChar, int length)
+{
+  std::string borderLine = "";
+  for(int i = 0; i<length; i++)
+    {
+      borderLine += borderChar;
+    }
+  return borderLine;
+}
+
+void printTitle(std::string title, char borderChar='*')
+{
+  std::string borderLine = buildBorderLine(borderChar, title.length() + 2);
+  std::cout << "\n" << borderLine << std::endl;
+  std::cout << borderChar;
+  std::cout << title;
+  std::cout << borderChar<< std::endl;
+  std::cout << borderLine << std::endl;
+  
+}
+void printFooter(std::string title, char borderChar='*')
+{
+  std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
+}
+
+void runPointerTestCode()
+{
+  runPointerTestOne();
+  runPointerTestTwo();
+  StructTestClass structClass;
+  structClass.runStructurePointerTests();
+  runPointerTestNew();
+}
+void runPointerTestOne()
+{
+  std::string title = " Pointer Test One ";
+  printTitle(title);
+  int x;
+  int *p;
+  std::cout << "x: " << x << std::endl;
+  std::cout << "p: " << p << std:: endl;
+  std::cout << "&x: " << &x << std::endl;
+  std::cout << "&p: " << &p << std:: endl;
+  //std::cout << "*x: " << *x << std::endl;
+  //std::cout << "*p: " << *p << std:: endl;
+  x = 5;
+  p = &x;
+  std:: cout << "after assignment..." << std::endl;
+  std::cout << "x: " << x << std::endl;
+  std::cout << "p: " << p << std:: endl;
+  std::cout << "&x: " << &x << std::endl;
+  std::cout << "&p: " << &p << std:: endl;
+  //std::cout << "*x: " << *x << std::endl;
+  std::cout << "*p: " << *p << std:: endl;
+  printFooter(title);
+}
+void runPointerTestTwo()
+{
+  std::string title = " Pointer Test Two ";
+  printTitle(title);
+  int *ptrA = 0;
+  int *ptrB = NULL;
+  int *ptrC = nullptr;
+  std::cout << "ptrA: " << ptrA << std:: endl;
+  std::cout << "ptrB: " << ptrB << std::endl;
+  std::cout << "ptrC: " << ptrC << std:: endl;
+  std::cout << "&ptrA: " << &ptrA << std:: endl;
+  std::cout << "&ptrB: " << &ptrB << std::endl;
+  std::cout << "&ptrC: " << &ptrC << std:: endl;
+  //std::cout << "*ptrA: " << *ptrA << std:: endl;
+  //std::cout << "*ptrB: " << *ptrB << std::endl;
+  //std::cout << "*ptrC: " << *ptrC << std:: endl;
+  printFooter(title);
+}
+void runPointerTestNew()
+{
+  int *p;
+  char *name;
+  std::string *str;
+  
+  std::cout <<"int : " << *p   <<std::endl;
+  std::cout <<"name: " << *name<<std::endl;
+  // std::cout <<"str : " << *str <<std::endl;
+  std::cout << "\n";
+  std::cout <<"&int : " << &p   <<std::endl;
+  std::cout <<"&name: " << &name<<std::endl;
+  // std::cout <<"str : " << &str <<std::endl;
+  std::cout << "\n";
+  
+  p = new int;
+  *p = 38;
+
+  name = new char[5];
+  std::strcpy(name, "John");
+
+  str = new std::string;
+  *str = "Howdy, Folks!";
+
+  std::cout <<"int : " << *p   <<std::endl;
+  std::cout <<"name: " << *name<<std::endl;
+  std::cout <<"str : " << *str <<std::endl;
+  std::cout << "\n";
+  std::cout <<"&int : " << &p   <<std::endl;
+  std::cout <<"&name: " << &name<<std::endl;
+  // std::cout <<"str : " << &str <<std::endl;
+  std::cout << "\n";
+
+  delete p;
+  delete [] name;
+  delete str;
+
+  
+  std::cout <<"int : " << *p   <<std::endl;
+  std::cout <<"name: " << *name<<std::endl;
+  // std::cout <<"str : " << *str <<std::endl;
+  std::cout << "\n";
+  std::cout <<"&int : " << &p   <<std::endl;
+  std::cout <<"&name: " << &name<<std::endl;
+  // std::cout <<"str : " << &str <<std::endl;
+  std::cout << "\n";
+
+
+
+  int *a;
+  int size=0;
+  std::cout << "Enter an integer: ";
+  std::cin >> size;
+  std::cout << std::endl;
+  a = new int[size];
+  for(int i=0; i<size;i++)
+  {
+    a[i] = (i+1)*2;
+  }
+  for(int i=0; i<size; i++)
+    {
+      std::cout << "a[" << i << "] "<< i+1 << ": " << a[i] << std::endl;
+    }
+  delete [] a;
 }
 
 void runLesson10_19Code()
@@ -90,6 +243,22 @@ void runSampleClassCode()
 void runCarCode(){
   Car car1("My", "car");
   car1.runCarCode();
+  car1.setColor2("Maroon");
+  car1.setColor2("Marron");
+  Stopable stopper(car1);
+  // Startable starter(car1);
+  // starter.start();
+  std::cout << "\ncar1 is " << std::to_string(car1.isVehicleStarted());
+  stopper.stop();
+  std::cout << "\ncar1 is " << std::to_string(car1.isVehicleStarted());
+  
+  // A function inherited from the Vehicle class
+  //car1.setWeight(2500);
+  std::cout << "\nThe color of the car2 is: " << car1.getColor() << std::endl;
+  //std::cout << "The weight of the car2 is: " << car1.getWeight() << " lbs " << std::endl;
+  std::cout << "The car2 is currently traveling at: " << car1.floorIt() << " mph" <<
+  std::endl;
+  
 }
 void runStudentCode(){
   Student student1;
@@ -112,7 +281,9 @@ void printMenu(){
     "Run Array Code",
     "Read Integer List File",
     "Run Dice Code",
-    "Run Sample class"
+    "Run Sample class",
+    "Run Lesson 10_19",
+    "Run Pointer Tests"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";
