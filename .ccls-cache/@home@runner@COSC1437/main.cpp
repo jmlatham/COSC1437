@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <fstream>
 #include <cstring>
+#include <stdlib.h>
+#include <time.h>
 #include "car.h"
 #include "student.h"
 #include "structTestClass.h"
@@ -30,8 +32,13 @@ void runPointerTestCode();
 void runPointerTestOne();
 void runPointerTestTwo();
 void runPointerTestNew();
+void runPointerTestThree();
+int* pointerParameters(int* &p, int *q);
+void runPointerTestDynamicArrays();
+void runPointerTestRandomSizeArrays();
 void printTitle(std::string, char);
 void printFooter(std::string, char);
+void printArrays(int **array);
 std::string buildBorderLine(char borderChar, int length);
 
 int main() 
@@ -115,11 +122,14 @@ void printFooter(std::string title, char borderChar='*')
 
 void runPointerTestCode()
 {
-  runPointerTestOne();
-  runPointerTestTwo();
-  StructTestClass structClass;
-  structClass.runStructurePointerTests();
-  runPointerTestNew();
+  //runPointerTestOne();
+  //runPointerTestTwo();
+  // StructTestClass structClass;
+  // structClass.runStructurePointerTests();
+  // runPointerTestNew();
+  // runPointerTestThree();
+  runPointerTestDynamicArrays();
+  // runPointerTestRandomSizeArrays();
 }
 void runPointerTestOne()
 {
@@ -164,50 +174,50 @@ void runPointerTestTwo()
 }
 void runPointerTestNew()
 {
-  int *p;
-  char *name;
-  std::string *str;
+  // int *p;
+  // char *name;
+  // std::string *str;
   
-  std::cout <<"int : " << *p   <<std::endl;
-  std::cout <<"name: " << *name<<std::endl;
+  // std::cout <<"int : " << *p   <<std::endl;
+  // std::cout <<"name: " << *name<<std::endl;
+  // // std::cout <<"str : " << *str <<std::endl;
+  // std::cout << "\n";
+  // std::cout <<"&int : " << &p   <<std::endl;
+  // std::cout <<"&name: " << &name<<std::endl;
+  // std::cout <<"str : " << &str <<std::endl;
+  // std::cout << "\n";
+  
+  // p = new int;
+  // *p = 38;
+
+  // name = new char[5];
+  // std::strcpy(name, "John");
+
+  // str = new std::string;
+  // *str = "Howdy, Folks!";
+
+  // std::cout <<"int : " << *p   <<std::endl;
+  // std::cout <<"name: " << *name<<std::endl;
   // std::cout <<"str : " << *str <<std::endl;
-  std::cout << "\n";
-  std::cout <<"&int : " << &p   <<std::endl;
-  std::cout <<"&name: " << &name<<std::endl;
+  // std::cout << "\n";
+  // std::cout <<"&int : " << &p   <<std::endl;
+  // std::cout <<"&name: " << &name<<std::endl;
   // std::cout <<"str : " << &str <<std::endl;
-  std::cout << "\n";
-  
-  p = new int;
-  *p = 38;
+  // std::cout << "\n";
 
-  name = new char[5];
-  std::strcpy(name, "John");
-
-  str = new std::string;
-  *str = "Howdy, Folks!";
-
-  std::cout <<"int : " << *p   <<std::endl;
-  std::cout <<"name: " << *name<<std::endl;
-  std::cout <<"str : " << *str <<std::endl;
-  std::cout << "\n";
-  std::cout <<"&int : " << &p   <<std::endl;
-  std::cout <<"&name: " << &name<<std::endl;
-  // std::cout <<"str : " << &str <<std::endl;
-  std::cout << "\n";
-
-  delete p;
-  delete [] name;
-  delete str;
+  // delete p;
+  // delete [] name;
+  // delete str;
 
   
-  std::cout <<"int : " << *p   <<std::endl;
-  std::cout <<"name: " << *name<<std::endl;
-  // std::cout <<"str : " << *str <<std::endl;
-  std::cout << "\n";
-  std::cout <<"&int : " << &p   <<std::endl;
-  std::cout <<"&name: " << &name<<std::endl;
-  // std::cout <<"str : " << &str <<std::endl;
-  std::cout << "\n";
+  // std::cout <<"int : " << *p   <<std::endl;
+  // std::cout <<"name: " << *name<<std::endl;
+  // // std::cout <<"str : " << *str <<std::endl;
+  // std::cout << "\n";
+  // std::cout <<"&int : " << &p   <<std::endl;
+  // std::cout <<"&name: " << &name<<std::endl;
+  // // std::cout <<"str : " << &str <<std::endl;
+  // std::cout << "\n";
 
 
 
@@ -216,17 +226,162 @@ void runPointerTestNew()
   std::cout << "Enter an integer: ";
   std::cin >> size;
   std::cout << std::endl;
+  
   a = new int[size];
   for(int i=0; i<size;i++)
   {
     a[i] = (i+1)*2;
   }
   for(int i=0; i<size; i++)
-    {
-      std::cout << "a[" << i << "] "<< i+1 << ": " << a[i] << std::endl;
-    }
+  {
+    std::cout << "a[" << i << "] "<< i+1 << ": " << a[i] << std::endl;
+  }
   delete [] a;
 }
+void runPointerTestThree()
+{
+  int integer1 = 0;
+  int integer2 = 0;
+  int *pointer1Ptr = &integer1;
+  int *pointer2Ptr = &integer2;
+  int *pointer3Ptr;
+  std::cout << "integer1: " << integer1 << std::endl;
+  std::cout << "integer2: " << integer1 << std::endl;
+  std::cout << "pointer1Ptr: " << pointer1Ptr << std::endl;
+  std::cout << "*pointer1Ptr: " << *pointer1Ptr << std::endl;
+  std::cout << "pointer2Ptr: " << pointer2Ptr << std::endl;
+  std::cout << "*pointer2Ptr: " << *pointer2Ptr << std::endl;
+  
+  pointer3Ptr = pointerParameters(pointer1Ptr, pointer2Ptr);
+  
+  std::cout << "integer1: " << integer1 << std::endl;
+  std::cout << "integer2: " << integer2 << std::endl;
+  std::cout << "pointer1Ptr: " << pointer1Ptr << std::endl;
+  std::cout << "*pointer1Ptr: " << *pointer1Ptr << std::endl;
+  std::cout << "pointer2Ptr: " << pointer2Ptr << std::endl;
+  std::cout << "*pointer2Ptr: " << *pointer2Ptr << std::endl;
+  std::cout << "pointer3Ptr: " << pointer3Ptr << std::endl;
+  std::cout << "*pointer3Ptr: " << *pointer3Ptr << std::endl;
+  *pointer3Ptr = 13;
+  std::cout << "*pointer3Ptr (13): " << *pointer3Ptr << std::endl;
+}
+int* pointerParameters(int* &p, int *q)
+{
+  int r = 13;
+  int s = 13;
+  std::cout << "*p: " << *p << std::endl;
+  std::cout << "*q: " << *q << std::endl;
+  *p = 5;
+  *q = 6;
+  std::cout << "p: " << p << std::endl;
+  std::cout << "q: " << q << std::endl;
+  std::cout << "*p: " << *p << std::endl;
+  std::cout << "*q: " << *q << std::endl;
+  p = &r;
+  q = &r;
+  std::cout << "p: " << p << std::endl;
+  std::cout << "q: " << q << std::endl;
+  return &s;
+}
+void runPointerTestDynamicArrays()
+{
+  srand(time(NULL));
+  int *board1[4];
+  for(int row=0; row < 4; row++)
+    {
+      board1[row] = new int[6];
+    }
+  for(int row=0; row < 4; row++)
+    {
+      for(int col=0; col<6; col++)
+        {
+          board1[row][col] = rand() % 20 + 1;
+        }
+    }
+  for(int row=0; row < 4; row++)
+    {
+      for(int col=0; col<6; col++)
+        {
+          std::cout << "board1 - ["<<row<<","<<col<<"]:" << board1[row][col] << std::endl;
+        }
+    }
+  int **board2;
+  int rows = 10;
+  int cols = 15;
+  board2 = new int*[rows];
+  for(int row=0; row < rows; row++)
+    {
+      board2[row] = new int[cols];
+      for(int col=0; col < cols; col++)
+        {
+          board2[row][col] = rand() % 20 + 1;
+        }
+    }
+  for(int row=0; row < rows; row++)
+    {
+      for(int col=0; col < cols; col++)
+        {
+          std::cout << "board2 - ["<<row<<","<<col<<"]:" << board2[row][col] << std::endl;
+        }
+    }
+  printArrays(board2);
+}
+void printArrays(int **array)
+{
+  for(int row=0; row < sizeof(array)/sizeof(int); row++)
+    {
+      for(int col=0; col < sizeof(*array[row])/sizeof(int); col++)
+        {
+          std::cout << "array - ["<<row<<","<<col<<"]:" << array[row][col] << std::endl;
+        }
+    }
+}
+void runPointerTestRandomSizeArrays()
+{
+  //sizeof(arrayname) / sizeof(int)
+  int *first;
+  int *second;
+  int *third;
+  int *fourth;
+  //shallow copy
+  first = new int[5];
+  // fill first
+  second = first;
+  // print both
+  delete [] second;
+  // print both
+  //deep copy
+  third = new int[5];
+  // fill third
+  fourth = new int[5];
+  // copy to fourth
+  // print both
+  delete [] fourth;
+  // print both
+}
+
+// string list1[3] = {
+//     "item1",
+//     "item2",
+//     "item3"
+// };
+
+// string list2[2] = {
+//     "item1",
+//     "item2"
+// };
+
+// template<typename T, size_t N>
+// void PrintItems(T(&items)[N]) {
+//     for (int i = 0; i < N; i++) {
+//         cout << items[i] << endl;
+//     }
+// }
+
+// int main() {
+//     PrintItems(list1);
+//     PrintItems(list2);
+// }
 
 void runLesson10_19Code()
 {

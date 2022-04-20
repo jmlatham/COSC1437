@@ -120,6 +120,9 @@ void StructTestClass::runPointerStructureOne()
   studentType *studentPtr;
 
   studentPtr = &student;
+  std::cout << "\nGPA.  : " << student.gpa;
+  std::cout << "\nGPA  .: " << (*studentPtr).gpa;
+  
   (*studentPtr).gpa = 3.9;
   std::cout << "\nGPA.  : " << student.gpa;
   std::cout << "\nGPA  .: " << (*studentPtr).gpa;

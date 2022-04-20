@@ -42,3 +42,27 @@ int Sample::getUserInput()
   }
   return menuSelection;
 }
+std::string Sample::buildBorderLine(char borderChar, int length)
+{
+  std::string borderLine = "";
+  for(int i = 0; i<length; i++)
+    {
+      borderLine += borderChar;
+    }
+  return borderLine;
+}
+
+void Sample::printTitle(std::string title, char borderChar='*')
+{
+  std::string borderLine = buildBorderLine(borderChar, title.length() + 2);
+  std::cout << "\n" << borderLine << std::endl;
+  std::cout << borderChar;
+  std::cout << title;
+  std::cout << borderChar<< std::endl;
+  std::cout << borderLine << std::endl;
+  
+}
+void Sample::printFooter(std::string title, char borderChar='*')
+{
+  std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
+}
