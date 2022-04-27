@@ -7,8 +7,8 @@ class Sample
   public:
     Sample();
     void runTests();
-    void printTitle(std::string, char);
-    void printFooter(std::string, char);
+    void printTitle(std::string, char c='*');
+    void printFooter(std::string, char c='*');
     std::string buildBorderLine(char borderChar, int length);
   private:
     void displayMenu();

@@ -14,6 +14,9 @@
 #include "lesson10_19.h"
 // #include "startable.h"
 #include "stop.h"
+#include "petType.h"
+#include "dogType.h"
+#include "RectangleTest.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -36,13 +39,25 @@ void runPointerTestThree();
 int* pointerParameters(int* &p, int *q);
 void runPointerTestDynamicArrays();
 void runPointerTestRandomSizeArrays();
+void runOperatorOverloadTest();
+void runTemplateTest();
 void printTitle(std::string, char);
 void printFooter(std::string, char);
 void printArrays(int **array);
 std::string buildBorderLine(char borderChar, int length);
 
+void runPetTypeTestCode();
+void callPrint(PetType& pet);
+
+
+
+
+template <class Type>
+Type larger(Type x, Type y);
+
 int main() 
 {
+
   int menuSelection = -1;
   printMenu();
   menuSelection = getMenuSelection();
@@ -83,6 +98,15 @@ int main()
       case 9:
         runPointerTestCode();
         break;
+      case 10:
+        runPetTypeTestCode();
+        break;
+      case 11:
+        runOperatorOverloadTest();
+        break;
+      case 12:
+        runTemplateTest();
+        break;
       default:
         std::cout << "That option is not available.";
     }
@@ -93,6 +117,53 @@ int main()
   std::cout << std::endl;
   return 0;
     
+}
+
+template <class Type>
+Type larger(Type x, Type y)
+{
+  if(x >= y)
+  {
+    return x;
+  }
+  
+  return y;
+}
+
+void runTemplateTest()
+{
+  std::cout << "Larger of 5 and 6 = " << larger(5,6) << std::endl;
+  std::cout << "Larger of A and B = " << larger('A','B') << std::endl;
+  std::cout << "Larger of A and B = " << larger('B','A') << std::endl;
+  std::cout << "Larger of Texas and Alaska = " << larger((std::string)"Alaska", (std::string)"Texas") << std:: endl;
+  std::cout << "Larger of Texas and Alaska = " << larger((std::string)"Texas",(std::string)"Alaska") << std:: endl;
+}
+
+void runOperatorOverloadTest()
+{
+  RectangleTest test;
+  // test.runTest();
+  // test.runTest2();
+  test.runTest3();
+}
+
+void runPetTypeTestCode()
+{
+  PetType pet("Lizard");
+  DogType dog("Spot", "lab");
+  pet.print();
+  std::cout << std::endl;
+  dog.print();
+  std::cout << std::endl;
+  callPrint(pet);
+  std::cout << std::endl;
+  callPrint(dog);
+  std::cout << std::endl;
+  
+}
+void callPrint(PetType& pet)
+{
+  pet.print();
 }
 
 std::string buildBorderLine(char borderChar, int length)
@@ -119,15 +190,32 @@ void printFooter(std::string title, char borderChar='*')
 {
   std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
 }
-
+/////////////////////////////////////////////
 void runPointerTestCode()
 {
+  // int newTest = 0;
+  // int *newTestPtr = &newTest;
+
+  // std::cout << "newTest: " << newTest << std::endl;
+  // std::cout << "&newTest: " << &newTest << std::endl;
+  // *newTestPtr = 5;
+  // std::cout << "newTest: " << newTest << std::endl;
+  // std::cout << "&newTest: " << &newTest << std::endl;
+  // std::cout << "newTestPtr: " << newTestPtr << std::endl;
+  // newTestPtr = new int;
+  // std::cout << "newTestPtr: " << newTestPtr << std::endl;
+  // *newTestPtr = 10;
+  // std::cout << "newTest: " << newTest << std::endl;
+  // std::cout << "&newTest: " << &newTest << std::endl;
+  // std::cout << "*newTestPtr: " << *newTestPtr << std::endl;
+  // std::cout << "newTestPtr: " << newTestPtr << std::endl;
+  
   //runPointerTestOne();
   //runPointerTestTwo();
   // StructTestClass structClass;
   // structClass.runStructurePointerTests();
-  // runPointerTestNew();
-  // runPointerTestThree();
+   // runPointerTestNew();
+   // runPointerTestThree();
   runPointerTestDynamicArrays();
   // runPointerTestRandomSizeArrays();
 }
@@ -251,6 +339,7 @@ void runPointerTestThree()
   std::cout << "*pointer1Ptr: " << *pointer1Ptr << std::endl;
   std::cout << "pointer2Ptr: " << pointer2Ptr << std::endl;
   std::cout << "*pointer2Ptr: " << *pointer2Ptr << std::endl;
+  std::cout << "pointer3Ptr: " << pointer3Ptr << std::endl;
   
   pointer3Ptr = pointerParameters(pointer1Ptr, pointer2Ptr);
   
@@ -264,6 +353,7 @@ void runPointerTestThree()
   std::cout << "*pointer3Ptr: " << *pointer3Ptr << std::endl;
   *pointer3Ptr = 13;
   std::cout << "*pointer3Ptr (13): " << *pointer3Ptr << std::endl;
+  std::cout << "pointer3Ptr:" << pointer3Ptr << std::endl;
 }
 int* pointerParameters(int* &p, int *q)
 {
@@ -281,6 +371,8 @@ int* pointerParameters(int* &p, int *q)
   q = &r;
   std::cout << "p: " << p << std::endl;
   std::cout << "q: " << q << std::endl;
+  std::cout << "s: " << s << std::endl;
+  std::cout << "&s:" << &s << std::endl;
   return &s;
 }
 void runPointerTestDynamicArrays()
@@ -359,7 +451,7 @@ void runPointerTestRandomSizeArrays()
   delete [] fourth;
   // print both
 }
-
+///////////////////////////////////////////////////////////
 // string list1[3] = {
 //     "item1",
 //     "item2",
@@ -438,7 +530,10 @@ void printMenu(){
     "Run Dice Code",
     "Run Sample class",
     "Run Lesson 10_19",
-    "Run Pointer Tests"
+    "Run Pointer Tests",
+    "Run PetType Test",
+    "Run Operator Overload Test",
+    "Run Template Test"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";

@@ -52,7 +52,7 @@ std::string Sample::buildBorderLine(char borderChar, int length)
   return borderLine;
 }
 
-void Sample::printTitle(std::string title, char borderChar='*')
+void Sample::printTitle(std::string title, char borderChar)
 {
   std::string borderLine = buildBorderLine(borderChar, title.length() + 2);
   std::cout << "\n" << borderLine << std::endl;
@@ -62,7 +62,7 @@ void Sample::printTitle(std::string title, char borderChar='*')
   std::cout << borderLine << std::endl;
   
 }
-void Sample::printFooter(std::string title, char borderChar='*')
+void Sample::printFooter(std::string title, char borderChar)
 {
   std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
 }

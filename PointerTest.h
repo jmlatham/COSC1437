@@ -10,6 +10,14 @@ class PointerTest : Sample
   private:
     void displayMenu();
     int getUserInput();
+    void runPointerTestOne();
+    void runPointerTestTwo();
+    void runPointerTestThree();
+    void runPointerTestNew();
+    void runPointerTestDynamicArrays();
+    void runPointerTestRandomSizeArrays();
+    void printArrays(int **array);
+    int* pointerParameters(int* &p, int *q);
 };
 
 #endif
