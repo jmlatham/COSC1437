@@ -1,7 +1,7 @@
 #ifndef CHAPTER09_H
 #define CHAPTER09_H
 #include <string>
-#include "chapter.h"
+#include "../chapter.h"
 
 class chapter09 : public chapter
 {

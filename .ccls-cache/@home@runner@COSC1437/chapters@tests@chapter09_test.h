@@ -1,6 +1,6 @@
 #ifndef CHAPTER09_TEST_H
 #define CHAPTER09_TEST_H
-#include "chapter09.h"
+#include "../chapter09/chapter09.h"
 
 class chapter09_test
 {

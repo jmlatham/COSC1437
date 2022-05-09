@@ -1,6 +1,5 @@
 #include <iostream>
 #include "chapter09_test.h"
-#include "chapter09.h"
 
 chapter09_test::chapter09_test()
 {

@@ -18,8 +18,8 @@
 #include "dogType.h"
 #include "RectangleTest.h"
 #include "divisionByZero.h"
-#include "chapters/chapter08_test.h"
-#include "chapters/chapter09_test.h"
+#include "chapters/tests/chapter08_test.h"
+#include "chapters/tests/chapter09_test.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -82,47 +82,47 @@ int main()
       case 9:
         chapter09_test().runTests();
         break;
-      case 31:
+      case 22:
         runCarCode();
         break;
-      case 32:
+      case 23:
         runStudentCode();
         break;
-      case 33:
+      case 24:
         runStructCode();
         break;
-      case 34:
+      case 25:
         runArrayCode();
         break;
-      case 35:
+      case 26:
         readIntegerListFile("integerListFile.txt");
         break;
-      case 36:
+      case 27:
         runDiceTestCode();
         break;
-      case 37:
+      case 28:
         runSampleClassCode();
         break;
-      case 38:
+      case 29:
         runLesson10_19Code();
         break;
-      case 39:
+      case 30:
         runPointerTestCode();
         break;
-      case 40:
+      case 31:
         runPetTypeTestCode();
         break;
-      case 41:
+      case 32:
         runOperatorOverloadTest();
         break;
-      case 42:
+      case 33:
         runTemplateTest();
         break;
-      case 43:
+      case 34:
         runDivisionTest();
         break;
       default:
-        std::cout << "That option is not available.";
+        std::cout << "That option is not yet implemented.";
     }
     
     printMenu();
@@ -599,14 +599,27 @@ void runArrayCode(){
 
 void printMenu(){
   std::string menuItems[] = {
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "Chapter 8",
+    " Chapter  1",
+    " Chapter  2",
+    " Chapter  3",
+    " Chapter  4",
+    " Chapter  5",
+    " Chapter  6",
+    " Chapter  7",
+    " Chapter  8",
+    " Chapter  9",
+    "Chapter 10",
+    "Chapter 11",
+    "Chapter 12",
+    "Chapter 13",
+    "Chapter 14",
+    "Chapter 15",
+    "Chapter 16",
+    "Chapter 17",
+    "Chapter 18",
+    "Chapter 19",
+    "Chapter 20",
+    "Chapter 21",
     "Run Car Code",
     "Run Student Code",
     "Run Struct Code",
@@ -623,7 +636,7 @@ void printMenu(){
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";
-  std::cout << "\n\t0. Quit";
+  std::cout << "\n\t0.  Quit";
   for (int itemIndex=0; itemIndex < menuSize; itemIndex++){
     std::cout << "\n\t" << std::to_string(itemIndex+1) << ". " << menuItems[itemIndex];
   }

@@ -9,7 +9,8 @@ chapter08::chapter08()
 void chapter08::displayMenu()
 {
   std::string menuItems[] = {
-    "Chapter 8-1"
+    "Chapter 8-1",
+    "Chapter 8-1a"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- Chapter " << _chapterNumber << " MENU --------->";

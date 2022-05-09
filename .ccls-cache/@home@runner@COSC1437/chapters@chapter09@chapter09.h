@@ -1,12 +1,12 @@
-#ifndef CHAPTER08_H
-#define CHAPTER08_H
+#ifndef CHAPTER09_H
+#define CHAPTER09_H
 #include <string>
-#include "chapter.h"
+#include "../chapter.h"
 
-class chapter08 : public chapter
+class chapter09 : public chapter
 {
     public:
-      chapter08();
+      chapter09();
       void displayMenu();
       void displayInstructions();
       void runTest();
