@@ -17,6 +17,9 @@
 #include "petType.h"
 #include "dogType.h"
 #include "RectangleTest.h"
+#include "divisionByZero.h"
+#include "chapters/chapter08_test.h"
+#include "chapters/chapter09_test.h"
 
 
 int getNumberOfSpaces(std::string stringToSearch);
@@ -41,8 +44,10 @@ void runPointerTestDynamicArrays();
 void runPointerTestRandomSizeArrays();
 void runOperatorOverloadTest();
 void runTemplateTest();
-void printTitle(std::string, char);
-void printFooter(std::string, char);
+void runDivisionTest();
+int divideIntegers(int dividend, int divisor);
+void printTitle(std::string, char borderChar='*');
+void printFooter(std::string, char borderChar='*');
 void printArrays(int **array);
 std::string buildBorderLine(char borderChar, int length);
 
@@ -71,41 +76,50 @@ int main()
     ADT: type name, domain, operations
     */
     switch(menuSelection){
-      case 1:
-        runCarCode();
-        break;
-      case 2:
-        runStudentCode();
-        break;
-      case 3:
-        runStructCode();
-        break;
-      case 4:
-        runArrayCode();
-        break;
-      case 5:
-        readIntegerListFile("integerListFile.txt");
-        break;
-      case 6:
-        runDiceTestCode();
-        break;
-      case 7:
-        runSampleClassCode();
-        break;
       case 8:
-        runLesson10_19Code();
+        chapter08_test().runTests();
         break;
       case 9:
+        chapter09_test().runTests();
+        break;
+      case 31:
+        runCarCode();
+        break;
+      case 32:
+        runStudentCode();
+        break;
+      case 33:
+        runStructCode();
+        break;
+      case 34:
+        runArrayCode();
+        break;
+      case 35:
+        readIntegerListFile("integerListFile.txt");
+        break;
+      case 36:
+        runDiceTestCode();
+        break;
+      case 37:
+        runSampleClassCode();
+        break;
+      case 38:
+        runLesson10_19Code();
+        break;
+      case 39:
         runPointerTestCode();
         break;
-      case 10:
+      case 40:
         runPetTypeTestCode();
         break;
-      case 11:
+      case 41:
         runOperatorOverloadTest();
         break;
-      case 12:
+      case 42:
         runTemplateTest();
+        break;
+      case 43:
+        runDivisionTest();
         break;
       default:
         std::cout << "That option is not available.";
@@ -118,6 +132,69 @@ int main()
   return 0;
     
 }
+
+void runDivisionTest()
+{
+  std::string title = " Division By Zero Test ";
+  printTitle(title);
+  int divisor;
+  int dividend;
+  int quotient = 0;
+  // input from user
+  std::cout << "Enter a dividend: ";
+  std::cin >> dividend;
+  std::cout << "Enter a divisor: ";
+  std::cin >> divisor;
+
+  // execute division
+  try{
+    quotient = divideIntegers(dividend, divisor);
+    std::cout << "\nThe quotient is: " << quotient << std::endl;
+  } 
+  catch(DivisionByZero dz)
+  {
+    std::cout << dz.what() << std::endl;
+    std::cout << "Try again." << std::endl;
+  }
+  catch(DivisionByLessThanTen dt)
+  {
+    std::cout << dt.what() << std::endl;
+    std::cout << "Do it again." << std::endl;
+  }
+  catch(DivisionByMoreThanTwenty mt)
+  {
+    std::cout << mt.what() << std::endl;
+    std::cout << "Do it again." << std::endl;
+  }
+  
+  
+  printFooter(title);
+}
+
+int divideIntegers(int dividend, int divisor)
+{
+  int quotient;
+  
+  if (divisor == 0)
+  {
+    //return -1;
+    throw DivisionByZero();
+  } 
+  else if (divisor < 10)
+  {
+    throw DivisionByLessThanTen();
+  }
+  else if (divisor > 20)
+  {
+    throw DivisionByMoreThanTwenty();
+  }
+
+  quotient = dividend / divisor;
+  
+  return quotient;
+}
+
+
 
 template <class Type>
 Type larger(Type x, Type y)
@@ -176,7 +253,7 @@ std::string buildBorderLine(char borderChar, int length)
   return borderLine;
 }
 
-void printTitle(std::string title, char borderChar='*')
+void printTitle(std::string title, char borderChar)
 {
   std::string borderLine = buildBorderLine(borderChar, title.length() + 2);
   std::cout << "\n" << borderLine << std::endl;
@@ -186,7 +263,7 @@ void printTitle(std::string title, char borderChar='*')
   std::cout << borderLine << std::endl;
   
 }
-void printFooter(std::string title, char borderChar='*')
+void printFooter(std::string title, char borderChar)
 {
   std::cout << "\n" << buildBorderLine(borderChar, title.length() + 2) << std::endl;
 }
@@ -522,6 +599,14 @@ void runArrayCode(){
 
 void printMenu(){
   std::string menuItems[] = {
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Chapter 8",
     "Run Car Code",
     "Run Student Code",
     "Run Struct Code",
@@ -533,7 +618,8 @@ void printMenu(){
     "Run Pointer Tests",
     "Run PetType Test",
     "Run Operator Overload Test",
-    "Run Template Test"
+    "Run Template Test",
+    "Run Division Test"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- MAIN MENU --------->";
