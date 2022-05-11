@@ -3,7 +3,7 @@
 
 chapter08_1a::chapter08_1a()
 {
-  _title = " Chapter 8_1a Examples ";
+  _title = " Chapter 8_1a Accessing Array Components ";
 }
 
 void chapter08_1a::displayMenu()

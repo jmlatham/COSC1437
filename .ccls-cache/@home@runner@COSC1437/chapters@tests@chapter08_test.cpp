@@ -2,6 +2,9 @@
 #include "chapter08_test.h"
 #include "../chapter08/chapter08_1.h"
 #include "../chapter08/chapter08_1a.h"
+#include "../chapter08/chapter08_1b.h"
+#include "../chapter08/chapter08_1c.h"
+#include "../chapter08/example08_4.h"
 
 chapter08_test::chapter08_test()
 {
@@ -56,7 +59,26 @@ void chapter08_test::handleSelection(int selection)
         runTest(chap);
       }
       break;
+    case 3:
+      {
+        chapter08_1b chap;
+        runTest(chap);
+      }
+      break;
+    case 4:
+      {
+        example08_4 chap;
+        runTest(chap);
+      }
+      break;
+    case 5:
+      {
+        chapter08_1c chap;
+        runTest(chap);
+      }
+      break;
     default:
+      std::cout << "That option is not yet available. Please try again." << std::endl;
       break;
   }
 }
