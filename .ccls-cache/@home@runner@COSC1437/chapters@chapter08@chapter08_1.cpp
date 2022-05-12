@@ -3,7 +3,7 @@
 
 chapter08_1::chapter08_1()
 {
-  _title = " Chapter 8_1 Example ";
+  _title = " Chapter 8-1 Arrays ";
 }
 
 void chapter08_1::displayMenu()

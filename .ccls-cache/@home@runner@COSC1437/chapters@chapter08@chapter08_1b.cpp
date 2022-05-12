@@ -3,7 +3,7 @@
 
 chapter08_1b::chapter08_1b()
 {
-  _title = " Chapter 8_1b Processing One-Dimensional Arrays ";
+  _title = " Chapter 8-1b Processing One-Dimensional Arrays ";
 }
 
 void chapter08_1b::displayMenu()

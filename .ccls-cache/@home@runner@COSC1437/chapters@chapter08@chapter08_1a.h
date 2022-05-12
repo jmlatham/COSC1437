@@ -1,5 +1,5 @@
 #ifndef CHAPTER08_1A_H
-#define CHAPTER08_1a_H
+#define CHAPTER08_1A_H
 #include "chapter08.h"
 
 class chapter08_1a : public chapter08

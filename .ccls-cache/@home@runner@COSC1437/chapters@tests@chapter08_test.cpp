@@ -4,6 +4,10 @@
 #include "../chapter08/chapter08_1a.h"
 #include "../chapter08/chapter08_1b.h"
 #include "../chapter08/chapter08_1c.h"
+#include "../chapter08/chapter08_1d.h"
+#include "../chapter08/chapter08_1e.h"
+#include "../chapter08/chapter08_1f.h"
+#include "../chapter08/chapter08_1g.h"
 #include "../chapter08/example08_4.h"
 
 chapter08_test::chapter08_test()
@@ -74,6 +78,30 @@ void chapter08_test::handleSelection(int selection)
     case 5:
       {
         chapter08_1c chap;
+        runTest(chap);
+      }
+      break;
+    case 6:
+      {
+        chapter08_1d chap;
+        runTest(chap);
+      }
+      break;
+    case 7:
+      {
+        chapter08_1e chap;
+        runTest(chap);
+      }
+      break;
+    case 8:
+      {
+        chapter08_1f chap;
+        runTest(chap);
+      }
+      break;
+    case 9:
+      {
+        chapter08_1g chap;
         runTest(chap);
       }
       break;

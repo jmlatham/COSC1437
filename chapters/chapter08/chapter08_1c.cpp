@@ -3,7 +3,7 @@
 
 chapter08_1c::chapter08_1c()
 {
-  _title = " Chapter 8_1c Array Index Out of Bounds ";
+  _title = " Chapter 8-1c Array Index Out of Bounds ";
 }
 
 void chapter08_1c::displayMenu()

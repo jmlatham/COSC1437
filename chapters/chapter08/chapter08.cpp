@@ -9,11 +9,15 @@ chapter08::chapter08()
 void chapter08::displayMenu()
 {
   std::string menuItems[] = {
-    "Chapter 8-1",
-    "Chapter 8-1a",
-    "Chapter 8-1b",
-    "Example 8-4",
-    "Chapter 8-1c"
+    "Chapter 8-1 Arrays",
+    "Chapter 8-1a Accessing Array Components",
+    "Chapter 8-1b Processing One-Dimensional Arrays",
+    "Example 8-4 ",
+    "Chapter 8-1c Array Index Out of Bounds",
+    "Chapter 8-1d Array Initialization during Declaration",
+    "Chapter 8-1e Partial Initialization of Arrays during Declaration",
+    "Chapter 8-1f Some Restrictions on Array Processing",
+    "Chapter 8-1g Arrays as Parameters to Functions"
   };
   int menuSize = sizeof(menuItems)/sizeof(menuItems[0]);
   std::cout << "\n\n<--------- Chapter " << _chapterNumber << " MENU --------->";

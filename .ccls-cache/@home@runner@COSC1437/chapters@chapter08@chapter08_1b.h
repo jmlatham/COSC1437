@@ -5,7 +5,7 @@
 class chapter08_1b : public chapter08
 {
   public:
-    chapter08_1a();
+    chapter08_1b();
     void displayMenu();
     void displayInstructions();
     void runTest();
